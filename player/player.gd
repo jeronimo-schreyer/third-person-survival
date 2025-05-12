@@ -15,32 +15,39 @@ func _process(_delta: float) -> void:
 	_debug_draw()
 
 
-func _physics_process(delta: float) -> void:
+func _on_grounded_state_physics_processing(delta: float) -> void:
 	_move_controller(delta)
 	_apply_gravity(delta)
 
 
 func _move_controller(delta: float) -> void:
+	# get input
 	var horizontal: float = Input.get_axis("ui_right", "ui_left")
 	var vertical: float = Input.get_axis("ui_down", "ui_up")
 
+	# apply camera orientation
 	var camera_basis = get_viewport().get_camera_3d().basis
 	var direction: Vector3 = (camera_basis * Vector3(-horizontal, 0.0, -vertical)).normalized()
 
+	# set movement vector
 	if direction == Vector3.ZERO:
 		velocity.x = move_toward(velocity.x, 0.0, _movement_speed)
 		velocity.z = move_toward(velocity.z, 0.0, _movement_speed)
 	else:
 		velocity = Vector3(direction.x, 0.0, direction.z) * _movement_speed
 
+	# orient skin mesh
 	if direction.length() > 0.2:
 		_last_movement_direction = direction
 	var target_angle := atan2(-_last_movement_direction.x, -_last_movement_direction.z)
 	$Armature/Skeleton3D.global_rotation.y = lerp_angle($Armature/Skeleton3D.rotation.y, target_angle, _rotation_speed * delta)
 
-	#var ground_speed: float = velocity.length()
+	# update state machine
+	$States.set_expression_property("velocity", velocity)
 
+	# apply movement
 	move_and_slide()
+
 
 
 func _apply_gravity(delta: float) -> void:
@@ -51,10 +58,10 @@ func _apply_gravity(delta: float) -> void:
 
 
 func _debug_draw():
-	# Origin
+	# origin
 	DebugDraw3D.draw_gizmo($Armature/Skeleton3D.global_transform * Transform3D.FLIP_Z)
 
-	# Velocity
+	# velocity
 	DebugDraw3D.draw_arrow_ray(
 		$Armature/Skeleton3D.global_transform.origin + Vector3.UP,
 		velocity, .2, Color.YELLOW, 0.1

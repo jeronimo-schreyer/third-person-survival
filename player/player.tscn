@@ -1,6 +1,26 @@
-[gd_scene load_steps=6 format=4 uid="uid://dwoy8b4fujdb5"]
+[gd_scene load_steps=14 format=4 uid="uid://dwoy8b4fujdb5"]
 
 [ext_resource type="Script" uid="uid://dbu5ktuokjttm" path="res://player/player.gd" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_yw30f"]
+[ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="3_g6k8r"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_qjkh3"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_g6k8r"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_g6k8r"]
+[ext_resource type="Script" uid="uid://le5w1cm0ul8p" path="res://addons/godot_state_charts/expression_guard.gd" id="6_boad6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g1dw6"]
+radius = 0.24
+height = 1.8
+
+[sub_resource type="Resource" id="Resource_boad6"]
+script = ExtResource("6_boad6")
+expression = "velocity.length() > 0.1"
+metadata/_custom_type_script = "uid://le5w1cm0ul8p"
+
+[sub_resource type="Resource" id="Resource_rgyib"]
+script = ExtResource("6_boad6")
+expression = "velocity.length() <= 0.1"
+metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8oun"]
 resource_name = "PolygonApoco_Base"
@@ -176,12 +196,51 @@ bind/47/name = &"toes_l"
 bind/47/bone = -1
 bind/47/pose = Transform3D(1, 2.49927e-15, -1.59691e-14, 2.49927e-15, -1, 1.86196e-13, -1.59691e-14, -1.86196e-13, -1, -0.114443, -0.00297976, 0.13247)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g1dw6"]
-radius = 0.3
-height = 1.8
-
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_oul6g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_g1dw6")
+
+[node name="States" type="Node" parent="."]
+script = ExtResource("2_yw30f")
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="Root" type="Node" parent="States"]
+script = ExtResource("3_g6k8r")
+
+[node name="Movement" type="Node" parent="States/Root"]
+script = ExtResource("3_qjkh3")
+initial_state = NodePath("Grounded")
+
+[node name="Grounded" type="Node" parent="States/Root/Movement"]
+script = ExtResource("4_g6k8r")
+
+[node name="Airborne" type="Node" parent="States/Root/Movement"]
+script = ExtResource("4_g6k8r")
+
+[node name="AnimationControl" type="Node" parent="States/Root"]
+script = ExtResource("3_qjkh3")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="States/Root/AnimationControl"]
+script = ExtResource("4_g6k8r")
+
+[node name="ToMoving" type="Node" parent="States/Root/AnimationControl/Idle"]
+script = ExtResource("5_g6k8r")
+to = NodePath("../../Moving")
+guard = SubResource("Resource_boad6")
+delay_in_seconds = "0.0"
+
+[node name="Moving" type="Node" parent="States/Root/AnimationControl"]
+script = ExtResource("4_g6k8r")
+
+[node name="ToIdle" type="Node" parent="States/Root/AnimationControl/Moving"]
+script = ExtResource("5_g6k8r")
+to = NodePath("../../Idle")
+guard = SubResource("Resource_rgyib")
+delay_in_seconds = "0.0"
 
 [node name="Armature" type="Node3D" parent="."]
 
@@ -577,6 +636,4 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 mesh = SubResource("ArrayMesh_oul6g")
 skin = SubResource("Skin_rkbax")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-shape = SubResource("CapsuleShape3D_g1dw6")
+[connection signal="state_physics_processing" from="States/Root/Movement/Grounded" to="." method="_on_grounded_state_physics_processing"]
