@@ -40,7 +40,7 @@ func _move_controller(delta: float) -> void:
 	if direction.length() > 0.2:
 		_last_movement_direction = direction
 	var target_angle := atan2(-_last_movement_direction.x, -_last_movement_direction.z)
-	$Armature/Skeleton3D.global_rotation.y = lerp_angle($Armature/Skeleton3D.rotation.y, target_angle, _rotation_speed * delta)
+	$Armature.global_rotation.y = lerp_angle($Armature.rotation.y, target_angle, _rotation_speed * delta)
 
 	# update state machine
 	$States.set_expression_property("velocity", velocity)
@@ -59,10 +59,10 @@ func _apply_gravity(delta: float) -> void:
 
 func _debug_draw():
 	# origin
-	DebugDraw3D.draw_gizmo($Armature/Skeleton3D.global_transform * Transform3D.FLIP_Z)
+	DebugDraw3D.draw_gizmo($Armature.global_transform * Transform3D.FLIP_Z)
 
 	# velocity
 	DebugDraw3D.draw_arrow_ray(
-		$Armature/Skeleton3D.global_transform.origin + Vector3.UP,
+		$Armature.global_transform.origin + Vector3.UP,
 		velocity, .2, Color.YELLOW, 0.1
 	)

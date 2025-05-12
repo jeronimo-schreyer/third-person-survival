@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://djeikdpgs228a"
-path="res://.godot/imported/SK_Chr_Teen_Male_01.fbx-4931a33fce28ab0a8aa18fa85896ec8f.scn"
+uid="uid://bqaouqxm0t8um"
+path="res://.godot/imported/A_Idle_Standing_Masc.fbx-be578c978fe2b1bf0f9bbf16332c51a6.scn"
 
 [deps]
 
-source_file="res://player/model/SK_Chr_Teen_Male_01.fbx"
-dest_files=["res://.godot/imported/SK_Chr_Teen_Male_01.fbx-4931a33fce28ab0a8aa18fa85896ec8f.scn"]
+source_file="res://player/animations/idle/A_Idle_Standing_Masc.fbx"
+dest_files=["res://.godot/imported/A_Idle_Standing_Masc.fbx-be578c978fe2b1bf0f9bbf16332c51a6.scn"]
 
 [params]
 
