@@ -1,0 +1,53 @@
+@tool
+extends PhantomCamera3D
+
+@export var mouse_sensitivity: float = 0.05
+
+@export var min_yaw: float = 0
+@export var max_yaw: float = 360
+
+@export var min_pitch: float = -89.9
+@export var max_pitch: float = 50
+
+@export var mouse_captured = true :
+	set (v):
+		mouse_captured = v
+		if not Engine.is_editor_hint():
+			Input.mouse_mode = \
+				Input.MOUSE_MODE_CAPTURED if mouse_captured else Input.MOUSE_MODE_VISIBLE
+
+
+func _init() -> void:
+	if not Engine.is_editor_hint():
+		mouse_captured = mouse_captured
+
+
+func _unhandled_input(event) -> void:	if not Engine.is_editor_hint():
+		# Trigger whenever the mouse moves.
+		if event is InputEventMouseMotion and mouse_captured:
+
+			var pcam_rotation_degrees: Vector3
+
+			# Assigns the current 3D rotation of the SpringArm3D node - to start off where it is in the editor.
+			pcam_rotation_degrees = get_third_person_rotation_degrees()
+
+			# Change the X rotation.
+			pcam_rotation_degrees.x -= event.relative.y * mouse_sensitivity
+
+			# Clamp the rotation in the X axis so it can go over or under the target.
+			pcam_rotation_degrees.x = clampf(pcam_rotation_degrees.x, min_pitch, max_pitch)
+
+			# Change the Y rotation value.
+			pcam_rotation_degrees.y -= event.relative.x * mouse_sensitivity
+
+			# Sets the rotation to fully loop around its target, but without going below or exceeding 0 and 360 degrees respectively.
+			pcam_rotation_degrees.y = wrapf(pcam_rotation_degrees.y, min_yaw, max_yaw)
+
+			# Change the SpringArm3D node's rotation and rotate around its target.
+			set_third_person_rotation_degrees(pcam_rotation_degrees)
+
+		elif event is InputEventKey:
+			if not event.echo and event.pressed:
+				match event.keycode:
+					KEY_ESCAPE:
+						mouse_captured = !mouse_captured
