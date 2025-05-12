@@ -28,6 +28,6 @@ window/size/viewport_height=1080
 
 enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 
-[physics]
+[phantom_camera]
 
-common/physics_interpolation=true
+tips/show_jitter_tips=false

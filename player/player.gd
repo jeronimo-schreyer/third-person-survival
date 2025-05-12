@@ -11,8 +11,8 @@ func _ready() -> void:
 	pass
 
 
-func _process(delta: float) -> void:
-	pass
+func _process(_delta: float) -> void:
+	_debug_draw()
 
 
 func _physics_process(delta: float) -> void:
@@ -48,3 +48,14 @@ func _apply_gravity(delta: float) -> void:
 		velocity.y = 0.0
 	else:
 		velocity.y -= _gravity * delta
+
+
+func _debug_draw():
+	# Origin
+	DebugDraw3D.draw_gizmo($Armature/Skeleton3D.global_transform * Transform3D.FLIP_Z)
+
+	# Velocity
+	DebugDraw3D.draw_arrow_ray(
+		$Armature/Skeleton3D.global_transform.origin + Vector3.UP,
+		velocity, .2, Color.YELLOW, 0.1
+	)
