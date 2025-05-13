@@ -66,3 +66,7 @@ ui_down={
 [phantom_camera]
 
 tips/show_jitter_tips=false
+
+[physics]
+
+3d/default_gravity=30.0

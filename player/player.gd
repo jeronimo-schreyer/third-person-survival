@@ -15,26 +15,25 @@ func _process(_delta: float) -> void:
 	_debug_draw()
 
 
-func _on_grounded_state_physics_processing(delta: float) -> void:
-	_move_controller(delta)
-	_apply_gravity(delta)
-
-
-func _move_controller(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	# get input
-	var horizontal: float = Input.get_axis("ui_right", "ui_left")
-	var vertical: float = Input.get_axis("ui_down", "ui_up")
+	var direction := Vector3.ZERO
+	direction.x = Input.get_axis("ui_left", "ui_right")
+	direction.z = Input.get_axis("ui_up", "ui_down")
 
 	# apply camera orientation
-	var camera_basis = get_viewport().get_camera_3d().basis
-	var direction: Vector3 = (camera_basis * Vector3(-horizontal, 0.0, -vertical)).normalized()
+	direction = direction.rotated(Vector3.UP, get_viewport().get_camera_3d().rotation.y).normalized()
 
 	# set movement vector
-	if direction == Vector3.ZERO:
-		velocity.x = move_toward(velocity.x, 0.0, _movement_speed)
-		velocity.z = move_toward(velocity.z, 0.0, _movement_speed)
-	else:
-		velocity = Vector3(direction.x, 0.0, direction.z) * _movement_speed
+	velocity.x = move_toward(velocity.x, direction.x * _movement_speed, _movement_speed)
+	velocity.z = move_toward(velocity.z, direction.z * _movement_speed, _movement_speed)
+
+	# apply gravity
+	if not is_on_floor():
+		velocity.y -= _gravity * delta
+
+	# apply movement
+	move_and_slide()
 
 	# orient skin mesh
 	if direction.length() > 0.2:
@@ -44,17 +43,7 @@ func _move_controller(delta: float) -> void:
 
 	# update state machine
 	$States.set_expression_property("velocity", velocity)
-
-	# apply movement
-	move_and_slide()
-
-
-
-func _apply_gravity(delta: float) -> void:
-	if is_on_floor():
-		velocity.y = 0.0
-	else:
-		velocity.y -= _gravity * delta
+	$States.set_expression_property("is_on_floor", is_on_floor())
 
 
 func _debug_draw():
