@@ -1,36 +1,35 @@
-[gd_scene load_steps=19 format=3 uid="uid://dwoy8b4fujdb5"]
+[gd_scene load_steps=27 format=3 uid="uid://dwoy8b4fujdb5"]
 
 [ext_resource type="Script" uid="uid://dbu5ktuokjttm" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_yw30f"]
-[ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="3_g6k8r"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_qjkh3"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_g6k8r"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_g6k8r"]
-[ext_resource type="Script" uid="uid://b5vawfqxn7cyf" path="res://addons/godot_state_charts/animation_player_state.gd" id="6_2ieo8"]
 [ext_resource type="Script" uid="uid://le5w1cm0ul8p" path="res://addons/godot_state_charts/expression_guard.gd" id="6_boad6"]
 [ext_resource type="PackedScene" uid="uid://dtrhxk28ispmj" path="res://player/model/PolygonSyntyCharacter.fbx" id="8_hg6s5"]
 [ext_resource type="Animation" uid="uid://bvav1ujiulfhk" path="res://player/animations/idle/A_Idle_Standing_Masc.anim" id="9_8t03j"]
 [ext_resource type="Animation" uid="uid://cvo47qpctd86l" path="res://player/animations/walk/A_Walk_F_Masc.anim" id="10_2ieo8"]
 [ext_resource type="Animation" uid="uid://b6ow2cnpjk2oy" path="res://player/animations/fall/A_InAIr_FallShort_Masc.anim" id="12_ebec5"]
+[ext_resource type="Animation" uid="uid://q3qr4j3t8e51" path="res://player/animations/run/A_Run_F_Masc.anim" id="13_yllr7"]
 
 [sub_resource type="Resource" id="Resource_2ieo8"]
 script = ExtResource("6_boad6")
-expression = "not is_on_floor"
+expression = "!is_on_floor"
 metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 
 [sub_resource type="Resource" id="Resource_ebec5"]
 script = ExtResource("6_boad6")
-expression = "is_on_floor"
-metadata/_custom_type_script = "uid://le5w1cm0ul8p"
-
-[sub_resource type="Resource" id="Resource_boad6"]
-script = ExtResource("6_boad6")
 expression = "velocity.length() > 0.1"
 metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 
-[sub_resource type="Resource" id="Resource_rgyib"]
+[sub_resource type="Resource" id="Resource_yllr7"]
 script = ExtResource("6_boad6")
 expression = "velocity.length() <= 0.1"
+metadata/_custom_type_script = "uid://le5w1cm0ul8p"
+
+[sub_resource type="Resource" id="Resource_kb6p2"]
+script = ExtResource("6_boad6")
+expression = "is_on_floor"
 metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g1dw6"]
@@ -41,8 +40,53 @@ height = 1.8
 _data = {
 &"Fall": ExtResource("12_ebec5"),
 &"Idle": ExtResource("9_8t03j"),
+&"Run": ExtResource("13_yllr7"),
 &"Walk": ExtResource("10_2ieo8")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2ieo8"]
+animation = &"Player/Fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ebec5"]
+animation = &"Player/Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yllr7"]
+animation = &"Player/Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kb6p2"]
+animation = &"Player/Run"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_wodsf"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ebec5")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_yllr7")
+blend_point_1/pos = 0.5
+blend_point_2/node = SubResource("AnimationNodeAnimation_kb6p2")
+blend_point_2/pos = 1.0
+sync = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_32hag"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tqiix"]
+xfade_time = 0.06
+break_loop_at_end = true
+advance_mode = 2
+advance_condition = &"is_falling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e7oew"]
+xfade_time = 0.06
+break_loop_at_end = true
+advance_mode = 2
+advance_condition = &"is_grounded"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_c35mf"]
+states/fall/node = SubResource("AnimationNodeAnimation_2ieo8")
+states/fall/position = Vector2(476.5, -23)
+states/grounded_movement_velocity/node = SubResource("AnimationNodeBlendSpace1D_wodsf")
+states/grounded_movement_velocity/position = Vector2(475.5, 99)
+transitions = ["Start", "grounded_movement_velocity", SubResource("AnimationNodeStateMachineTransition_32hag"), "grounded_movement_velocity", "fall", SubResource("AnimationNodeStateMachineTransition_tqiix"), "fall", "grounded_movement_velocity", SubResource("AnimationNodeStateMachineTransition_e7oew")]
+graph_offset = Vector2(-9, -69)
 
 [node name="Player" type="CharacterBody3D"]
 floor_stop_on_slope = false
@@ -51,68 +95,53 @@ floor_block_on_wall = false
 floor_max_angle = 0.942478
 floor_snap_length = 0.24
 script = ExtResource("1_oul6g")
-_movement_speed = 1.4
+_acceleration = 10.0
+_walk_speed = 1.3
+_run_speed = 2.7
 
 [node name="States" type="Node" parent="."]
 script = ExtResource("2_yw30f")
 metadata/_custom_type_script = "uid://couw105c3bde4"
 
 [node name="Root" type="Node" parent="States"]
-script = ExtResource("3_g6k8r")
-
-[node name="Movement" type="Node" parent="States/Root"]
 script = ExtResource("3_qjkh3")
 initial_state = NodePath("Grounded")
 
-[node name="Grounded" type="Node" parent="States/Root/Movement"]
-editor_description = "This state is active when the player is on the ground."
-script = ExtResource("4_g6k8r")
+[node name="Grounded" type="Node" parent="States/Root"]
+script = ExtResource("3_qjkh3")
+initial_state = NodePath("Idle")
 
-[node name="ToAirborne" type="Node" parent="States/Root/Movement/Grounded"]
+[node name="ToAirborne" type="Node" parent="States/Root/Grounded"]
 script = ExtResource("5_g6k8r")
 to = NodePath("../../Airborne")
 guard = SubResource("Resource_2ieo8")
 delay_in_seconds = "0.0"
 
-[node name="Airborne" type="Node" parent="States/Root/Movement"]
-editor_description = "This is the root state for when the player is in the air. We could have sub-states to handle the various input that is allowed when in the air."
-script = ExtResource("6_2ieo8")
-animation_player = NodePath("../../../../Armature/AnimationPlayer")
-animation_name = &"Player/Fall"
-metadata/_custom_type_script = "uid://b5vawfqxn7cyf"
+[node name="Idle" type="Node" parent="States/Root/Grounded"]
+script = ExtResource("4_g6k8r")
 
-[node name="ToGrounded" type="Node" parent="States/Root/Movement/Airborne"]
+[node name="ToMoving" type="Node" parent="States/Root/Grounded/Idle"]
 script = ExtResource("5_g6k8r")
-to = NodePath("../../Grounded")
+to = NodePath("../../Moving")
 guard = SubResource("Resource_ebec5")
 delay_in_seconds = "0.0"
 
-[node name="AnimationControl" type="Node" parent="States/Root"]
-script = ExtResource("3_qjkh3")
-initial_state = NodePath("Idle")
+[node name="Moving" type="Node" parent="States/Root/Grounded"]
+script = ExtResource("4_g6k8r")
 
-[node name="Idle" type="Node" parent="States/Root/AnimationControl"]
-script = ExtResource("6_2ieo8")
-animation_player = NodePath("../../../../Armature/AnimationPlayer")
-animation_name = &"Player/Idle"
-metadata/_custom_type_script = "uid://b5vawfqxn7cyf"
-
-[node name="ToMoving" type="Node" parent="States/Root/AnimationControl/Idle"]
-script = ExtResource("5_g6k8r")
-to = NodePath("../../Moving")
-guard = SubResource("Resource_boad6")
-delay_in_seconds = "0.0"
-
-[node name="Moving" type="Node" parent="States/Root/AnimationControl"]
-script = ExtResource("6_2ieo8")
-animation_player = NodePath("../../../../Armature/AnimationPlayer")
-animation_name = &"Player/Walk"
-metadata/_custom_type_script = "uid://b5vawfqxn7cyf"
-
-[node name="ToIdle" type="Node" parent="States/Root/AnimationControl/Moving"]
+[node name="ToIdle" type="Node" parent="States/Root/Grounded/Moving"]
 script = ExtResource("5_g6k8r")
 to = NodePath("../../Idle")
-guard = SubResource("Resource_rgyib")
+guard = SubResource("Resource_yllr7")
+delay_in_seconds = "0.0"
+
+[node name="Airborne" type="Node" parent="States/Root"]
+script = ExtResource("4_g6k8r")
+
+[node name="ToGrounded" type="Node" parent="States/Root/Airborne"]
+script = ExtResource("5_g6k8r")
+to = NodePath("../../Grounded")
+guard = SubResource("Resource_kb6p2")
 delay_in_seconds = "0.0"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -123,51 +152,62 @@ shape = SubResource("CapsuleShape3D_g1dw6")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-bones/1/position = Vector3(0.00396301, 0.868366, -0.0223084)
-bones/1/rotation = Quaternion(-0.145149, -0.132868, -0.000415562, 0.980448)
-bones/2/rotation = Quaternion(0.188737, -0.0147269, -0.0164314, 0.98178)
-bones/3/rotation = Quaternion(-0.067686, 0.0376279, -0.00928895, 0.996954)
-bones/4/rotation = Quaternion(0.0920885, 0.0401519, -0.0165429, 0.994803)
-bones/5/rotation = Quaternion(0.0589124, -0.0171592, 0.0557458, 0.996558)
-bones/6/rotation = Quaternion(-0.0964941, 0.096799, -0.00519253, 0.990602)
-bones/10/rotation = Quaternion(-0.19637, 0.153544, -0.690237, 0.679291)
-bones/11/rotation = Quaternion(0.128839, 0.139903, -0.562846, 0.804383)
-bones/12/rotation = Quaternion(0.210684, 0.158056, -0.0250487, 0.964367)
-bones/13/rotation = Quaternion(-0.0654807, -0.0474609, -0.0348538, 0.996115)
-bones/14/rotation = Quaternion(0.135209, 0.668463, 0.0643389, 0.728517)
-bones/15/rotation = Quaternion(0.318127, -0.0108082, -0.199748, 0.926704)
-bones/16/rotation = Quaternion(0.00128599, -0.0137349, -0.00289261, 0.999901)
-bones/17/rotation = Quaternion(0.0622258, 0.0374921, 0.0386986, 0.996607)
-bones/18/rotation = Quaternion(-0.00612531, 0.0102279, -0.284324, 0.958654)
-bones/19/rotation = Quaternion(-0.048356, 0.00972975, -0.202922, 0.977952)
-bones/21/rotation = Quaternion(-0.0247082, -0.00314328, -0.0487779, 0.998499)
-bones/22/rotation = Quaternion(0.0141032, 0.0151785, -0.273468, 0.961658)
-bones/23/rotation = Quaternion(-0.0553281, 0.0467867, 0.471819, 0.878713)
-bones/25/rotation = Quaternion(0.969202, 0.0374397, 0.241017, 0.0340244)
-bones/26/rotation = Quaternion(0.0115793, -0.194701, 0.168222, 0.96626)
-bones/27/rotation = Quaternion(-0.223176, -0.197678, -0.0422414, 0.953589)
-bones/28/rotation = Quaternion(0.0494008, 0.0745913, -0.0115188, 0.995923)
-bones/29/rotation = Quaternion(-0.04912, 0.642167, -0.186882, 0.741811)
-bones/30/rotation = Quaternion(0.370138, 0.074749, 0.125598, 0.917407)
-bones/31/rotation = Quaternion(0.00278007, 0.0159568, -0.00654932, 0.999847)
-bones/32/rotation = Quaternion(-0.0422594, -0.0204309, 0.0454649, 0.997863)
-bones/33/rotation = Quaternion(0.0258605, -0.0187156, -0.296146, 0.954609)
-bones/34/rotation = Quaternion(0.0309086, -0.00612459, -0.206159, 0.978011)
-bones/36/rotation = Quaternion(0.0223822, 0.00252747, -0.0484205, 0.998573)
-bones/37/rotation = Quaternion(-0.0277622, -0.00652883, -0.263317, 0.964288)
-bones/38/rotation = Quaternion(0.140216, -0.00279566, -0.282214, 0.949045)
-bones/40/rotation = Quaternion(0.00925265, -0.159243, 0.982874, 0.0922717)
-bones/41/rotation = Quaternion(-0.108736, 0.175516, 0.0492644, 0.977212)
-bones/42/rotation = Quaternion(0.557355, -0.063996, 0.0771912, 0.824197)
-bones/43/rotation = Quaternion(0.309237, -0.011327, -0.00776413, 0.950886)
-bones/45/rotation = Quaternion(-0.0148568, -0.0884882, 0.994796, -0.0482633)
-bones/46/rotation = Quaternion(-0.101784, -0.296052, -0.0464016, 0.948599)
-bones/47/rotation = Quaternion(0.49809, 0.101273, -0.0532985, 0.85954)
-bones/48/rotation = Quaternion(0.287277, -0.0133027, 0.00991986, 0.957704)
+bones/1/position = Vector3(0.000955142, 0.868637, -0.0292315)
+bones/1/rotation = Quaternion(-0.144941, -0.132689, -0.00178767, 0.980501)
+bones/2/rotation = Quaternion(0.190591, -0.0149775, -0.0147677, 0.981444)
+bones/3/rotation = Quaternion(-0.0685638, 0.0379522, -0.00718859, 0.996899)
+bones/4/rotation = Quaternion(0.0818148, 0.040158, -0.018791, 0.995661)
+bones/6/rotation = Quaternion(-0.108037, 0.10603, -0.00980659, 0.988428)
+bones/10/rotation = Quaternion(-0.19802, 0.149241, -0.679619, 0.690386)
+bones/11/rotation = Quaternion(0.107888, 0.141446, -0.567569, 0.803877)
+bones/12/rotation = Quaternion(0.196613, 0.165473, -0.0239281, 0.966121)
+bones/13/rotation = Quaternion(-0.0645751, -0.0505215, -0.0397976, 0.995838)
+bones/14/rotation = Quaternion(0.135442, 0.662918, 0.0739437, 0.732617)
+bones/15/rotation = Quaternion(0.314435, -0.0121365, -0.189428, 0.930108)
+bones/16/rotation = Quaternion(-0.00272103, -0.0124724, 0.00786913, 0.999888)
+bones/17/rotation = Quaternion(0.0596598, 0.0345305, 0.0500049, 0.996367)
+bones/18/rotation = Quaternion(-0.00766775, 0.00985318, -0.273333, 0.961839)
+bones/19/rotation = Quaternion(-0.0497614, 0.00851599, -0.191733, 0.980148)
+bones/21/rotation = Quaternion(-0.0258947, -0.00345956, -0.0373, 0.998963)
+bones/22/rotation = Quaternion(0.0130532, 0.0141397, -0.262437, 0.964757)
+bones/23/rotation = Quaternion(-0.0571529, 0.0462365, 0.481789, 0.873198)
+bones/25/rotation = Quaternion(0.969466, 0.0215623, 0.241343, 0.0377439)
+bones/26/rotation = Quaternion(0.010315, -0.197106, 0.163641, 0.966574)
+bones/27/rotation = Quaternion(-0.22817, -0.191042, -0.0417365, 0.953782)
+bones/28/rotation = Quaternion(0.0450814, 0.0762086, -0.00399301, 0.996064)
+bones/29/rotation = Quaternion(-0.0591335, 0.646679, -0.186315, 0.73729)
+bones/30/rotation = Quaternion(0.364153, 0.0741987, 0.116428, 0.921049)
+bones/31/rotation = Quaternion(-0.00328553, 0.0126059, -0.0157928, 0.99979)
+bones/32/rotation = Quaternion(-0.0398292, -0.0172649, 0.0567599, 0.997444)
+bones/33/rotation = Quaternion(0.027338, -0.0178079, -0.285211, 0.957909)
+bones/34/rotation = Quaternion(0.0320413, -0.00456361, -0.194995, 0.98027)
+bones/36/rotation = Quaternion(0.023576, 0.00281591, -0.0369425, 0.999035)
+bones/37/rotation = Quaternion(-0.0267972, -0.0056573, -0.252234, 0.967279)
+bones/38/rotation = Quaternion(0.141354, -0.000789058, -0.271302, 0.952058)
+bones/40/rotation = Quaternion(0.0088057, -0.154673, 0.984034, 0.0876107)
+bones/41/rotation = Quaternion(-0.110509, 0.171228, 0.0491593, 0.977779)
+bones/42/rotation = Quaternion(0.558002, -0.0615065, 0.0711732, 0.824491)
+bones/43/rotation = Quaternion(0.307432, -0.0113222, -0.0077492, 0.951471)
+bones/45/rotation = Quaternion(-0.0151225, -0.0869435, 0.994782, -0.0511904)
+bones/46/rotation = Quaternion(-0.0960504, -0.296301, -0.0444622, 0.949212)
+bones/47/rotation = Quaternion(0.491543, 0.100741, -0.0544332, 0.863292)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Armature"]
 libraries = {
 &"Player": SubResource("AnimationLibrary_2ieo8")
 }
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Armature")
+tree_root = SubResource("AnimationNodeStateMachine_c35mf")
+anim_player = NodePath("../Armature/AnimationPlayer")
+parameters/conditions/is_falling = false
+parameters/conditions/is_grounded = true
+parameters/grounded_movement_velocity/blend_position = 0.0
+
+[connection signal="state_entered" from="States/Root/Grounded" to="." method="_on_grounded_state_entered"]
+[connection signal="state_physics_processing" from="States/Root/Grounded" to="." method="_on_grounded_state_physics_processing"]
+[connection signal="state_unhandled_input" from="States/Root/Grounded" to="." method="_on_grounded_state_unhandled_input"]
+[connection signal="state_entered" from="States/Root/Airborne" to="." method="_on_airborne_state_entered"]
 
 [editable path="Armature"]
