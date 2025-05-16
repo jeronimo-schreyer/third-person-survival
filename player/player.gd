@@ -10,6 +10,7 @@ extends CharacterBody3D
 
 var _last_movement_direction := Vector3.FORWARD
 var speed: float
+var crouched := false
 
 
 func _ready() -> void:
@@ -66,8 +67,12 @@ func _on_grounded_state_physics_processing(delta: float) -> void:
 	direction = direction.rotated(Vector3.UP, get_viewport().get_camera_3d().rotation.y).normalized()
 
 	# set movement vector
-	velocity.x = move_toward(velocity.x, direction.x * speed, _acceleration * delta)
-	velocity.z = move_toward(velocity.z, direction.z * speed, _acceleration * delta)
+	var max_speed = speed
+	if crouched and max_speed > _walk_speed:
+		max_speed = _walk_speed
+
+	velocity.x = move_toward(velocity.x, direction.x * max_speed, _acceleration * delta)
+	velocity.z = move_toward(velocity.z, direction.z * max_speed, _acceleration * delta)
 
 	# orient skin mesh
 	if direction.length() > 0.2:
@@ -75,12 +80,22 @@ func _on_grounded_state_physics_processing(delta: float) -> void:
 	var target_angle := atan2(-_last_movement_direction.x, -_last_movement_direction.z)
 	$Armature.global_rotation.y = lerp_angle($Armature.rotation.y, target_angle, _rotation_speed * delta)
 
-	$AnimationTree.set("parameters/grounded_movement_velocity/blend_position", velocity.length() / _run_speed)
+	var velocity_normalized = velocity.length() / _run_speed
+	$AnimationTree.set("parameters/ground/stand/blend_position", velocity_normalized)
+	$AnimationTree.set("parameters/ground/crouch/blend_position", velocity_normalized)
 
 
 func _on_grounded_state_unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.physical_keycode == KEY_SHIFT:
-		if event.is_pressed():
-			speed = _run_speed
-		else:
-			speed = _walk_speed
+	if event is InputEventKey:
+		match event.physical_keycode:
+			KEY_SHIFT:
+				if event.is_pressed():
+					speed = _run_speed
+				else:
+					speed = _walk_speed
+
+			KEY_CTRL:
+				if event.is_pressed() and not event.is_echo():
+					crouched = !crouched
+					$AnimationTree.set("parameters/ground/conditions/is_standing", !crouched)
+					$AnimationTree.set("parameters/ground/conditions/is_crouched", crouched)
