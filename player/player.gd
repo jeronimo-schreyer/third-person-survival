@@ -8,9 +8,10 @@ extends CharacterBody3D
 
 @onready var _gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-var _last_movement_direction := Vector3.FORWARD
+var mesh_direction := Vector3.FORWARD
 var speed: float
 var crouched := false
+var aiming := false
 
 
 func _ready() -> void:
@@ -57,11 +58,9 @@ func _on_grounded_state_entered() -> void:
 
 func _on_grounded_state_physics_processing(delta: float) -> void:
 	# get input
-	var direction := Vector3(
-		Input.get_axis("ui_left", "ui_right"),
-		0.0,
-		Input.get_axis("ui_up", "ui_down")
-	)
+	var h_input := Input.get_axis("ui_left", "ui_right")
+	var v_input := Input.get_axis("ui_up", "ui_down")
+	var direction := Vector3(h_input, 0.0, v_input)
 
 	# apply camera orientation
 	direction = direction.rotated(Vector3.UP, get_viewport().get_camera_3d().rotation.y).normalized()
@@ -76,13 +75,21 @@ func _on_grounded_state_physics_processing(delta: float) -> void:
 
 	# orient skin mesh
 	if direction.length() > 0.2:
-		_last_movement_direction = direction
-	var target_angle := atan2(-_last_movement_direction.x, -_last_movement_direction.z)
+		if not aiming:
+			mesh_direction = direction
+		else:
+			mesh_direction = Vector3.FORWARD.rotated(Vector3.UP,
+				get_viewport().get_camera_3d().rotation.y).normalized()
+	var target_angle := atan2(-mesh_direction.x, -mesh_direction.z)
 	$Armature.global_rotation.y = lerp_angle($Armature.rotation.y, target_angle, _rotation_speed * delta)
 
+	# update animation tree properties
 	var velocity_normalized = velocity.length() / _run_speed
-	$AnimationTree.set("parameters/ground/stand/blend_position", velocity_normalized)
-	$AnimationTree.set("parameters/ground/crouch/blend_position", velocity_normalized)
+	var computed_direction = Vector2(h_input, -v_input)
+	$AnimationTree.set("parameters/ground/movement/stand/walk/blend_position", velocity_normalized)
+	$AnimationTree.set("parameters/ground/movement/stand/strafe/blend_position", computed_direction)
+	$AnimationTree.set("parameters/ground/movement/crouch/walk/blend_position", velocity_normalized)
+	$AnimationTree.set("parameters/ground/movement/crouch/strafe/blend_position", computed_direction)
 
 
 func _on_grounded_state_unhandled_input(event: InputEvent) -> void:
@@ -97,5 +104,24 @@ func _on_grounded_state_unhandled_input(event: InputEvent) -> void:
 			KEY_CTRL:
 				if event.is_pressed() and not event.is_echo():
 					crouched = !crouched
-					$AnimationTree.set("parameters/ground/conditions/is_standing", !crouched)
-					$AnimationTree.set("parameters/ground/conditions/is_crouched", crouched)
+					$AnimationTree.set("parameters/ground/movement/conditions/is_standing", !crouched)
+					$AnimationTree.set("parameters/ground/movement/conditions/is_crouched", crouched)
+
+	if event is InputEventMouseButton:
+		match event.button_index:
+			MOUSE_BUTTON_RIGHT:
+				aiming = event.is_pressed()
+
+				# Tween between states
+				var aiming_properties = [
+					"parameters/ground/movement/stand/aiming/blend_amount",
+					"parameters/ground/movement/crouch/aiming/blend_amount",
+				]
+
+				for aiming_property in aiming_properties:
+					var t = get_tree().create_tween()
+					t.tween_property($AnimationTree, aiming_property, 1.0 if aiming else 0.0, 0.06).from_current()
+
+
+func _on_grounded_state_exited() -> void:
+	aiming = false

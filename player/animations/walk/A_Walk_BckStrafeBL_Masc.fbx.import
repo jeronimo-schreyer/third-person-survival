@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dlao3hxoc84m"
-path="res://.godot/imported/A_Crouch_FwdStrafeF_Masc.fbx-b0fb1bd8a06c024ddeccf10bbbb66bed.scn"
+uid="uid://cyxrkfhwkh4st"
+path="res://.godot/imported/A_Walk_BckStrafeBL_Masc.fbx-98a83fbf23a358013a982df7a2ad959b.scn"
 
 [deps]
 
-source_file="res://player/animations/walk/A_Crouch_FwdStrafeF_Masc.fbx"
-dest_files=["res://.godot/imported/A_Crouch_FwdStrafeF_Masc.fbx-b0fb1bd8a06c024ddeccf10bbbb66bed.scn"]
+source_file="res://player/animations/walk/A_Walk_BckStrafeBL_Masc.fbx"
+dest_files=["res://.godot/imported/A_Walk_BckStrafeBL_Masc.fbx-98a83fbf23a358013a982df7a2ad959b.scn"]
 
 [params]
 
