@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://dwoy8b4fujdb5"]
+[gd_scene load_steps=78 format=3 uid="uid://dwoy8b4fujdb5"]
 
 [ext_resource type="Script" uid="uid://dbu5ktuokjttm" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_yw30f"]
@@ -152,6 +152,9 @@ animation = &"Player/A_Crouch_BckStrafeBR_Masc"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_237xx"]
 animation = &"Player/A_Crouch_FwdStrafeFR_Masc"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rptt4"]
+animation = &"Player/Crouching Idle"
+
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_b8hi5"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_q28gw")
 blend_point_0/pos = Vector2(0, 1)
@@ -169,6 +172,8 @@ blend_point_6/node = SubResource("AnimationNodeAnimation_jfgyi")
 blend_point_6/pos = Vector2(1, -1)
 blend_point_7/node = SubResource("AnimationNodeAnimation_237xx")
 blend_point_7/pos = Vector2(1, 1)
+blend_point_8/node = SubResource("AnimationNodeAnimation_rptt4")
+blend_point_8/pos = Vector2(0, 0)
 snap = Vector2(1, 1)
 sync = true
 
@@ -186,7 +191,7 @@ blend_point_1/pos = 0.5
 sync = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jd2rm"]
-graph_offset = Vector2(-724.021, 119)
+graph_offset = Vector2(-708.021, 278.5)
 nodes/aiming/node = SubResource("AnimationNodeBlend2_r7pn3")
 nodes/aiming/position = Vector2(-63.3554, 162.85)
 nodes/strafe/node = SubResource("AnimationNodeBlendSpace2D_b8hi5")
@@ -295,10 +300,10 @@ states/crouch/position = Vector2(443.576, 216.404)
 states/stand/node = SubResource("AnimationNodeBlendTree_fmu53")
 states/stand/position = Vector2(444.5, 100)
 transitions = ["Start", "stand", SubResource("AnimationNodeStateMachineTransition_w7j2h"), "stand", "crouch", SubResource("AnimationNodeStateMachineTransition_x7c3f"), "crouch", "stand", SubResource("AnimationNodeStateMachineTransition_bjvpn")]
-graph_offset = Vector2(-185.348, 65.9038)
+graph_offset = Vector2(30.652, 59.9038)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_knn7v"]
-graph_offset = Vector2(-289.5, 194.5)
+graph_offset = Vector2(-362.5, 230)
 nodes/movement/node = SubResource("AnimationNodeStateMachine_g4c7l")
 nodes/movement/position = Vector2(-220, 150)
 nodes/output/position = Vector2(540, 230)
