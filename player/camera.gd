@@ -29,7 +29,7 @@ func _init() -> void:
 
 
 func _unhandled_input(event) -> void:
-	if not Engine.is_editor_hint():
+	if not Engine.is_editor_hint() and is_active():
 		# trigger whenever the mouse moves
 		if event is InputEventMouseMotion and mouse_captured:
 

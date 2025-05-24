@@ -12,6 +12,7 @@ var mesh_direction := Vector3.FORWARD
 var speed: float
 var crouched := false
 var aiming := false
+var target_aim_position := Vector3.ZERO
 
 
 func _ready() -> void:
@@ -42,8 +43,11 @@ func _debug_draw():
 	# velocity
 	DebugDraw3D.draw_arrow_ray(
 		$Armature.global_transform.origin + Vector3.UP,
-		velocity, .2, Color.YELLOW, 0.1
+		get_real_velocity() * 2.0, .2, Color.YELLOW, 0.1
 	)
+
+	if aiming:
+		DebugDraw3D.draw_sphere(target_aim_position)
 
 
 func _on_airborne_state_entered() -> void:
@@ -67,7 +71,7 @@ func _on_grounded_state_physics_processing(delta: float) -> void:
 
 	# set movement vector
 	var max_speed = speed
-	if crouched and max_speed > _walk_speed:
+	if (crouched or aiming) and max_speed > _walk_speed:
 		max_speed = _walk_speed
 
 	velocity.x = move_toward(velocity.x, direction.x * max_speed, _acceleration * delta)
@@ -84,12 +88,27 @@ func _on_grounded_state_physics_processing(delta: float) -> void:
 	$Armature.global_rotation.y = lerp_angle($Armature.rotation.y, target_angle, _rotation_speed * delta)
 
 	# update animation tree properties
-	var velocity_normalized = velocity.length() / _run_speed
-	var computed_direction = Vector2(h_input, -v_input)
+	var velocity_normalized = velocity.length() / _run_speed if get_real_velocity().length() > 0.1 else Vector3.ZERO
+	var computed_direction = Vector2(h_input, -v_input) * velocity_normalized if get_real_velocity().length() > 0.1 else Vector2.ZERO
 	$AnimationTree.set("parameters/ground/movement/stand/walk/blend_position", velocity_normalized)
 	$AnimationTree.set("parameters/ground/movement/stand/strafe/blend_position", computed_direction)
 	$AnimationTree.set("parameters/ground/movement/crouch/walk/blend_position", velocity_normalized)
 	$AnimationTree.set("parameters/ground/movement/crouch/strafe/blend_position", computed_direction)
+
+	# update other properties
+	$Armature/Skeleton3D/SpineLookAt.active = aiming
+	$Armature/Skeleton3D/HeadLookAt.active = aiming
+	if aiming:
+		var space_state = get_world_3d().direct_space_state
+		var camera = get_viewport().get_camera_3d()
+		var mouse_position = get_viewport().get_mouse_position()
+		var from = camera.project_ray_origin(mouse_position)
+		target_aim_position = from + camera.project_ray_normal(mouse_position) * 5.0
+		var query = PhysicsRayQueryParameters3D.create(from, target_aim_position, 0xffffff, [self])
+		var result = space_state.intersect_ray(query)
+		if not result.is_empty():
+			target_aim_position = result.position
+		$LookAtTarget.global_transform.origin = target_aim_position
 
 
 func _on_grounded_state_unhandled_input(event: InputEvent) -> void:
