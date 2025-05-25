@@ -1,0 +1,445 @@
+[gd_scene load_steps=32 format=3 uid="uid://3txvffmy1dl4"]
+
+[ext_resource type="PackedScene" uid="uid://c6lqqodekqs5g" path="res://levels/proto/basic-level.tscn" id="1_x4chb"]
+[ext_resource type="ArrayMesh" uid="uid://c4psjve8bbclf" path="res://levels/proto/models/Untitled_Mesh_047.res" id="19_ait7k"]
+[ext_resource type="ArrayMesh" uid="uid://b0fg61puoj8l2" path="res://levels/proto/models/Untitled_Mesh_004.res" id="20_42xju"]
+[ext_resource type="ArrayMesh" uid="uid://u8ftw6c1syfg" path="res://levels/proto/models/Untitled_Mesh_027.res" id="21_6btg4"]
+[ext_resource type="ArrayMesh" uid="uid://wqq26ymanisa" path="res://levels/proto/models/Untitled_Mesh_046.res" id="21_khlio"]
+[ext_resource type="ArrayMesh" uid="uid://5y6xe3gcgscw" path="res://levels/proto/models/Untitled_Mesh_050.res" id="22_esdoc"]
+[ext_resource type="ArrayMesh" uid="uid://3gvsibxia2w" path="res://levels/proto/models/Untitled_Mesh_028.res" id="22_sl4om"]
+[ext_resource type="ArrayMesh" uid="uid://dlw2vrmntd364" path="res://levels/proto/models/Untitled_Mesh_029.res" id="23_dtg4e"]
+[ext_resource type="ArrayMesh" uid="uid://bdbxn2ktpk1a3" path="res://levels/proto/models/Untitled_Mesh_030.res" id="24_ut2i6"]
+[ext_resource type="ArrayMesh" uid="uid://b1wnkr4424pr3" path="res://levels/proto/models/Untitled_Mesh_031.res" id="25_0mnfp"]
+[ext_resource type="ArrayMesh" uid="uid://b42f082043nrq" path="res://levels/proto/models/Untitled_Mesh_032.res" id="26_qw2y7"]
+[ext_resource type="ArrayMesh" uid="uid://b2h3ifcfk25s4" path="res://levels/proto/models/Untitled_Mesh_033.res" id="27_uuqa8"]
+[ext_resource type="ArrayMesh" uid="uid://cb1e1v1a4sges" path="res://levels/proto/models/Untitled_Mesh_034.res" id="28_samc1"]
+[ext_resource type="ArrayMesh" uid="uid://8vr3kw113iko" path="res://levels/proto/models/Untitled_Mesh_035.res" id="29_oaehd"]
+[ext_resource type="ArrayMesh" uid="uid://dsfxc415if5i0" path="res://levels/proto/models/Untitled_Mesh_036.res" id="30_f8y3u"]
+[ext_resource type="ArrayMesh" uid="uid://b0ld4igiouv0d" path="res://levels/proto/models/Untitled_Mesh_037.res" id="31_0k1o5"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_yo6q3"]
+data = PackedVector3Array(-100, 100, 0, -100, 0, -36.3752, 0, 100, 0, -100, 0, -36.3752, 0, 0, -36.3752, 0, 100, 0, -100, 0, -36.3752, -100, 0, 0, 0, 0, -36.3752, -100, 0, 0, 0, 0, 0, 0, 0, -36.3752, -100, 0, 0, -100, 100, 0, 0, 0, 0, -100, 100, 0, 0, 100, 0, 0, 0, 0, 0, 100, 0, 0, 0, -36.3752, 0, 0, 0, -100, 0, 0, -100, 0, -36.3752, -100, 100, 0)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_p48rn"]
+data = PackedVector3Array(-100, 100, 0, -100, 0, -46.6255, 0, 100, 0, -100, 0, -46.6255, 0, 0, -46.6255, 0, 100, 0, -100, 0, -46.6255, -100, 0, 0, 0, 0, -46.6255, -100, 0, 0, 0, 0, 0, 0, 0, -46.6255, -100, 0, 0, -100, 100, 0, 0, 0, 0, -100, 100, 0, 0, 100, 0, 0, 0, 0, 0, 100, 0, 0, 0, -46.6255, 0, 0, 0, -100, 0, 0, -100, 0, -46.6255, -100, 100, 0)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3jwke"]
+data = PackedVector3Array(-100, 100, 0, -100, 0, -57.7037, 0, 100, 0, -100, 0, -57.7037, 0, 0, -57.7037, 0, 100, 0, -100, 0, -57.7037, -100, 0, 0, 0, 0, -57.7037, -100, 0, 0, 0, 0, 0, 0, 0, -57.7037, -100, 0, 0, -100, 100, 0, 0, 0, 0, -100, 100, 0, 0, 100, 0, 0, 0, 0, 0, 100, 0, 0, 0, -57.7037, 0, 0, 0, -100, 0, 0, -100, 0, -57.7037, -100, 100, 0)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_j6jnj"]
+data = PackedVector3Array(-100, 100, 0, -100, 0, -69.9769, 0, 100, 0, -100, 0, -69.9769, 0, 0, -69.9769, 0, 100, 0, -100, 0, -69.9769, -100, 0, 0, 0, 0, -69.9769, -100, 0, 0, 0, 0, 0, 0, 0, -69.9769, -100, 0, 0, -100, 100, 0, 0, 0, 0, -100, 100, 0, 0, 100, 0, 0, 0, 0, 0, 100, 0, 0, 0, -69.9769, 0, 0, 0, -100, 0, 0, -100, 0, -69.9769, -100, 100, 0)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_khlio"]
+data = PackedVector3Array(-100, 100, 0, -100, 0, -83.8548, 0, 100, 0, -100, 0, -83.8548, 0, 0, -83.8548, 0, 100, 0, -100, 0, -83.8548, -100, 0, 0, 0, 0, -83.8548, -100, 0, 0, 0, 0, 0, 0, 0, -83.8548, -100, 0, 0, -100, 100, 0, 0, 0, 0, -100, 100, 0, 0, 100, 0, 0, 0, 0, 0, 100, 0, 0, 0, -83.8548, 0, 0, 0, -100, 0, 0, -100, 0, -83.8548, -100, 100, 0)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_esdoc"]
+data = PackedVector3Array(-100, 100, 0, -100, 0, -100.014, 0, 100, 0, -100, 0, -100.014, 0, 0, -100.014, 0, 100, 0, -100, 0, -100.014, -100, 0, 0, 0, 0, -100.014, -100, 0, 0, 0, 0, 0, 0, 0, -100.014, -100, 0, 0, -100, 100, 0, 0, 0, 0, -100, 100, 0, 0, 100, 0, 0, 0, 0, 0, 100, 0, 0, 0, -100.014, 0, 0, 0, -100, 0, 0, -100, 0, -100.014, -100, 100, 0)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_tn2uf"]
+data = PackedVector3Array(-100, 100, 0, -100, 0, -119.192, 0, 100, 0, -100, 0, -119.192, 0, 0, -119.192, 0, 100, 0, -100, 0, -119.192, -100, 0, 0, 0, 0, -119.192, -100, 0, 0, 0, 0, 0, 0, 0, -119.192, -100, 0, 0, -100, 100, 0, 0, 0, 0, -100, 100, 0, 0, 100, 0, 0, 0, 0, 0, 100, 0, 0, 0, -119.192, 0, 0, 0, -100, 0, 0, -100, 0, -119.192, -100, 100, 0)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2cnu1"]
+data = PackedVector3Array(-100, 100, 0, -100, 0, -142.72, 0, 100, 0, -100, 0, -142.72, 0, 0, -142.72, 0, 100, 0, -100, 0, -142.72, -100, 0, 0, 0, 0, -142.72, -100, 0, 0, 0, 0, 0, 0, 0, -142.72, -100, 0, 0, -100, 100, 0, 0, 0, 0, -100, 100, 0, 0, 100, 0, 0, 0, 0, 0, 100, 0, 0, 0, -142.72, 0, 0, 0, -100, 0, 0, -100, 0, -142.72, -100, 100, 0)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_a35kx"]
+data = PackedVector3Array(-100, 100, 0, -100, 0, -173.002, 0, 100, 0, -100, 0, -173.002, 0, 0, -173.002, 0, 100, 0, -100, 0, -173.002, -100, 0, 0, 0, 0, -173.002, -100, 0, 0, 0, 0, 0, 0, 0, -173.002, -100, 0, 0, -100, 100, 0, 0, 0, 0, -100, 100, 0, 0, 100, 0, 0, 0, 0, 0, 100, 0, 0, 0, -173.002, 0, 0, 0, -100, 0, 0, -100, 0, -173.002, -100, 100, 0)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_s0ive"]
+data = PackedVector3Array(-100, 100, 0, -100, 0, -214.377, 0, 100, 0, -100, 0, -214.377, 0, 0, -214.377, 0, 100, 0, -100, 0, -214.377, -100, 0, 0, 0, 0, -214.377, -100, 0, 0, 0, 0, 0, 0, 0, -214.377, -100, 0, 0, -100, 100, 0, 0, 0, 0, -100, 100, 0, 0, 100, 0, 0, 0, 0, 0, 100, 0, 0, 0, -214.377, 0, 0, 0, -100, 0, 0, -100, 0, -214.377, -100, 100, 0)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ly6oy"]
+data = PackedVector3Array(-100, 100, 0, -100, 0, -274.67, 0, 100, 0, -100, 0, -274.67, 0, 0, -274.67, 0, 100, 0, -100, 0, -274.67, -100, 0, 0, 0, 0, -274.67, -100, 0, 0, 0, 0, 0, 0, 0, -274.67, -100, 0, 0, -100, 100, 0, 0, 0, 0, -100, 100, 0, 0, 100, 0, 0, 0, 0, 0, 100, 0, 0, 0, -274.67, 0, 0, 0, -100, 0, 0, -100, 0, -274.67, -100, 100, 0)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6ylw4"]
+data = PackedVector3Array(-100, 100, 0, -100, 100, -100, 0, 100, 0, -100, 100, -100, 0, 100, -100, 0, 100, 0, -100, 100, -100, -100, 0, -100, 0, 100, -100, -100, 0, -100, 0, 0, -100, 0, 100, -100, -100, 0, -100, -100, 0, 0, 0, 0, -100, -100, 0, 0, 0, 0, 0, 0, 0, -100, -100, 0, 0, -100, 100, 0, 0, 0, 0, -100, 100, 0, 0, 100, 0, 0, 0, 0, 0, 100, 0, 0, 100, -100, 0, 0, 0, 0, 100, -100, 0, 0, -100, 0, 0, 0, -100, 0, 0, -100, 0, -100, -100, 100, 0, -100, 0, -100, -100, 100, -100, -100, 100, 0)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_5l2dn"]
+data = PackedVector3Array(-92.9023, 9.84634, -73.7397, -38.357, 9.84634, -95.9019, -38.357, 9.84634, -73.7397, -92.9023, 9.84634, -73.7397, -92.9023, 9.84634, -95.9019, -38.357, 9.84634, -95.9019, -99.0557, 9.84634, -100.462, -46.9769, 3.96488, -99.2606, -45.0931, 9.84634, -97.5577, -99.0557, 9.84634, -100.462, -99.0557, 3.96488, -100.462, -46.9769, 3.96488, -99.2606, -99.0557, 3.96488, -100.462, -40.8975, 3.96488, -69.1795, -46.9769, 3.96488, -99.2606, -99.0557, 3.96488, -100.462, -99.0557, 3.96488, -69.1795, -40.8975, 3.96488, -69.1795, -99.0557, 3.96488, -69.1795, -40.8975, 9.84634, -69.1795, -40.8975, 3.96488, -69.1795, -99.0557, 3.96488, -69.1795, -99.0557, 9.84634, -69.1795, -40.8975, 9.84634, -69.1795, 99.0557, 9.84634, -69.1795, 99.0557, 3.96488, -100.462, 99.0557, 3.96488, -69.1795, 99.0557, 9.84634, -69.1795, 99.0557, 9.84634, -100.462, 99.0557, 3.96488, -100.462, -99.0557, 3.96488, -69.1795, -99.0557, 9.84634, -100.462, -99.0557, 9.84634, -69.1795, -99.0557, 3.96488, -69.1795, -99.0557, 3.96488, -100.462, -99.0557, 9.84634, -100.462, -99.0557, 9.84634, -69.1795, -38.357, 9.84634, -73.7397, -40.8975, 9.84634, -69.1795, -99.0557, 9.84634, -69.1795, -92.9023, 9.84634, -73.7397, -38.357, 9.84634, -73.7397, 99.0557, 9.84634, -69.1795, 92.9023, 9.84634, -95.9019, 99.0557, 9.84634, -100.462, 99.0557, 9.84634, -69.1795, 92.9023, 9.84634, -73.7397, 92.9023, 9.84634, -95.9019, -38.357, 9.84634, -95.9019, -99.0557, 9.84634, -100.462, -45.0931, 9.84634, -97.5577, -38.357, 9.84634, -95.9019, -92.9023, 9.84634, -95.9019, -99.0557, 9.84634, -100.462, -99.0557, 9.84634, -100.462, -92.9023, 9.84634, -73.7397, -99.0557, 9.84634, -69.1795, -99.0557, 9.84634, -100.462, -92.9023, 9.84634, -95.9019, -92.9023, 9.84634, -73.7397, -84.5982, 5.23587, -7.92128, -74.1264, 5.23587, -31.7103, -74.1264, 5.23587, -7.92128, -84.5982, 5.23587, -7.92128, -77.4875, 5.23586, -46.8544, -74.1264, 5.23587, -31.7103, -84.5982, 5.23587, -108.791, -74.1264, -5.23586, -108.791, -74.1264, 5.23587, -108.791, -84.5982, 5.23587, -108.791, -84.5982, -5.23586, -108.791, -74.1264, -5.23586, -108.791, -84.5982, -5.23586, -108.791, -74.1264, -5.23586, -7.92128, -74.1264, -5.23586, -108.791, -84.5982, -5.23586, -108.791, -84.5982, -5.23586, -7.92128, -74.1264, -5.23586, -7.92128, -98.5728, -19.2105, 0, -60.1518, 19.2105, 0, -60.1518, -19.2105, 0, -98.5728, -19.2105, 0, -98.5728, 19.2105, 0, -60.1518, 19.2105, 0, -74.1264, 5.23587, -7.92128, -74.1264, 1.37649, -37.4223, -74.1264, -5.23586, -7.92128, -74.1264, 5.23587, -7.92128, -74.1264, 5.23587, -31.7103, -74.1264, 1.37649, -37.4223, -84.5982, -5.23586, -7.92128, -84.5982, 5.23587, -108.791, -84.5982, 5.23587, -7.92128, -84.5982, -5.23586, -7.92128, -84.5982, -5.23586, -108.791, -84.5982, 5.23587, -108.791, -84.5982, -5.23586, -7.92128, -60.1518, -19.2105, -4.90758, -74.1264, -5.23586, -7.92128, -84.5982, -5.23586, -7.92128, -98.5728, -19.2105, -4.90758, -60.1518, -19.2105, -4.90758, -74.1264, -5.23586, -7.92128, -60.1518, 19.2105, -4.90758, -74.1264, 5.23587, -7.92128, -74.1264, -5.23586, -7.92128, -60.1518, -19.2105, -4.90758, -60.1518, 19.2105, -4.90758, -74.1264, 5.23587, -7.92128, -98.5728, 19.2105, -4.90758, -84.5982, 5.23587, -7.92128, -74.1264, 5.23587, -7.92128, -60.1518, 19.2105, -4.90758, -98.5728, 19.2105, -4.90758, -84.5982, 5.23587, -7.92128, -98.5728, -19.2105, -4.90758, -84.5982, -5.23586, -7.92128, -84.5982, 5.23587, -7.92128, -98.5728, 19.2105, -4.90758, -98.5728, -19.2105, -4.90758, -98.5728, -19.2105, -4.90758, -60.1518, -19.2105, 0, -60.1518, -19.2105, -4.90758, -98.5728, -19.2105, -4.90758, -98.5728, -19.2105, 0, -60.1518, -19.2105, 0, -60.1518, -19.2105, -4.90758, -60.1518, 19.2105, 0, -60.1518, 19.2105, -4.90758, -60.1518, -19.2105, -4.90758, -60.1518, -19.2105, 0, -60.1518, 19.2105, 0, -60.1518, 19.2105, -4.90758, -98.5728, 19.2105, 0, -98.5728, 19.2105, -4.90758, -60.1518, 19.2105, -4.90758, -60.1518, 19.2105, 0, -98.5728, 19.2105, 0, -98.5728, 19.2105, -4.90758, -98.5728, -19.2105, 0, -98.5728, -19.2105, -4.90758, -98.5728, 19.2105, -4.90758, -98.5728, 19.2105, 0, -98.5728, -19.2105, 0, 76.9615, 5.23586, -53.6941, 84.5981, 5.23587, -108.791, 84.5981, 5.23587, -7.92128, 84.5981, 5.23587, -108.791, 74.1264, 5.23587, -64.5182, 74.1264, 5.23587, -108.791, 76.9615, 5.23586, -53.6941, 74.1264, 5.23587, -64.5182, 84.5981, 5.23587, -108.791, 74.1264, 5.23587, -108.791, 84.5981, -5.23586, -108.791, 84.5981, 5.23587, -108.791, 74.1264, 5.23587, -108.791, 74.1264, -5.23586, -108.791, 84.5981, -5.23586, -108.791, 74.1264, -5.23586, -108.791, 84.5981, -5.23586, -7.92128, 84.5981, -5.23586, -108.791, 74.1264, -5.23586, -108.791, 74.1264, -5.23586, -7.92128, 84.5981, -5.23586, -7.92128, 60.1518, 19.2105, 0, 98.5728, -19.2105, 0, 60.1518, -19.2105, 0, 98.5728, -19.2105, 0, 75.8544, 19.2105, 0, 98.5728, 19.2105, 0, 98.5728, -19.2105, 0, 60.1518, 19.2105, 0, 75.8544, 19.2105, 0, 84.5981, 5.23587, -7.92128, 84.5981, -5.23586, -108.791, 84.5981, -5.23586, -7.92128, 84.5981, 5.23587, -7.92128, 84.5981, 5.23587, -108.791, 84.5981, -5.23586, -108.791, 74.1264, -5.23586, -108.791, 74.1264, -0.266299, -53.7399, 74.1264, -5.23586, -7.92128, 74.1264, -0.266299, -53.7399, 74.1264, 5.23587, -108.791, 74.1264, 5.23587, -64.5182, 74.1264, -0.266299, -53.7399, 74.1264, -5.23586, -108.791, 74.1264, 5.23587, -108.791, 74.1264, -5.23586, -7.92128, 98.5728, -19.2105, -4.90758, 84.5981, -5.23586, -7.92128, 74.1264, -5.23586, -7.92128, 60.1518, -19.2105, -4.90758, 98.5728, -19.2105, -4.90758, 84.5981, -5.23586, -7.92128, 98.5728, 19.2105, -4.90758, 84.5981, 5.23587, -7.92128, 84.5981, -5.23586, -7.92128, 98.5728, -19.2105, -4.90758, 98.5728, 19.2105, -4.90758, 98.5728, 19.2105, -4.90758, 74.1264, 5.23587, -7.92128, 84.5981, 5.23587, -7.92128, 74.1264, 5.23587, -7.92128, 87.9849, 19.2105, -4.90758, 74.7486, 14.2831, -5.97018, 74.1264, 5.23587, -7.92128, 98.5728, 19.2105, -4.90758, 87.9849, 19.2105, -4.90758, 74.1264, 5.23587, -7.92128, 60.1518, -19.2105, -4.90758, 74.1264, -5.23586, -7.92128, 74.1264, 5.23587, -7.92128, 60.1518, 19.2105, -4.90758, 60.1518, -19.2105, -4.90758, 60.1518, -19.2105, -4.90758, 98.5728, -19.2105, 0, 98.5728, -19.2105, -4.90758, 60.1518, -19.2105, -4.90758, 60.1518, -19.2105, 0, 98.5728, -19.2105, 0, 98.5728, -19.2105, -4.90758, 98.5728, 19.2105, 0, 98.5728, 19.2105, -4.90758, 98.5728, -19.2105, -4.90758, 98.5728, -19.2105, 0, 98.5728, 19.2105, 0, 98.5728, 19.2105, -4.90758, 75.8544, 19.2105, 0, 87.9849, 19.2105, -4.90758, 98.5728, 19.2105, -4.90758, 98.5728, 19.2105, 0, 75.8544, 19.2105, 0, 60.1518, 19.2105, -4.90758, 60.1518, -19.2105, 0, 60.1518, -19.2105, -4.90758, 60.1518, 19.2105, -4.90758, 60.1518, 19.2105, 0, 60.1518, -19.2105, 0, 75.8544, 19.2105, 0, 60.1518, 19.2105, -4.90758, 69.5998, 19.2105, -4.90758, 75.8544, 19.2105, 0, 60.1518, 19.2105, 0, 60.1518, 19.2105, -4.90758, 75.8544, 19.2105, 0, 74.7486, 14.2831, -5.97018, 87.9849, 19.2105, -4.90758, 74.7486, 14.2831, -5.97018, 60.1518, 19.2105, -4.90758, 74.1264, 5.23587, -7.92128, 74.7486, 14.2831, -5.97018, 69.5998, 19.2105, -4.90758, 60.1518, 19.2105, -4.90758, 75.8544, 19.2105, 0, 69.5998, 19.2105, -4.90758, 74.7486, 14.2831, -5.97018, -74.1264, 5.23587, -52.6127, -74.1264, 1.37649, -37.4223, -77.4875, 5.23586, -46.8544, -74.1264, 1.37649, -37.4223, -74.1264, 5.23587, -31.7103, -77.4875, 5.23586, -46.8544, -84.5982, 5.23587, -108.791, -77.4875, 5.23586, -46.8544, -84.5982, 5.23587, -7.92128, -77.4875, 5.23586, -46.8544, -74.1264, 5.23587, -108.791, -74.1264, 5.23587, -52.6127, -77.4875, 5.23586, -46.8544, -84.5982, 5.23587, -108.791, -74.1264, 5.23587, -108.791, -74.1264, 1.37649, -37.4223, -74.1264, -5.23586, -108.791, -74.1264, -5.23586, -7.92128, -74.1264, -5.23586, -108.791, -74.1264, 5.23587, -52.6127, -74.1264, 5.23587, -108.791, -74.1264, 1.37649, -37.4223, -74.1264, 5.23587, -52.6127, -74.1264, -5.23586, -108.791, 74.1264, 5.23587, -64.5182, 76.9615, 5.23586, -53.6941, 74.1264, -0.266299, -53.7399, 76.9615, 5.23586, -53.6941, 74.1264, 5.23587, -41.6882, 74.1264, -0.266299, -53.7399, 74.1264, 5.23587, -7.92128, 76.9615, 5.23586, -53.6941, 84.5981, 5.23587, -7.92128, 74.1264, 5.23587, -7.92128, 74.1264, 5.23587, -41.6882, 76.9615, 5.23586, -53.6941, 74.1264, -5.23586, -7.92128, 74.1264, 5.23587, -41.6882, 74.1264, 5.23587, -7.92128, 74.1264, -5.23586, -7.92128, 74.1264, -0.266299, -53.7399, 74.1264, 5.23587, -41.6882, -45.0931, 9.84634, -97.5577, -35.063, 3.96489, -100.462, -35.063, 9.84634, -100.462, -45.0931, 9.84634, -97.5577, -46.9769, 3.96488, -99.2606, -35.063, 3.96489, -100.462, -40.8975, 3.96488, -69.1795, -35.063, 3.96489, -100.462, -46.9769, 3.96488, -99.2606, -38.357, 9.84634, -95.9019, -45.0931, 9.84634, -97.5577, -35.063, 9.84634, -100.462, -35.063, 9.84634, -100.462, 99.0557, 3.96488, -100.462, 99.0557, 9.84634, -100.462, -35.063, 9.84634, -100.462, -35.063, 3.96489, -100.462, 99.0557, 3.96488, -100.462, -40.8975, 3.96488, -69.1795, 99.0557, 3.96488, -100.462, -35.063, 3.96489, -100.462, -40.8975, 3.96488, -69.1795, 99.0557, 3.96488, -69.1795, 99.0557, 3.96488, -100.462, -40.8975, 9.84634, -69.1795, 99.0557, 3.96488, -69.1795, -40.8975, 3.96488, -69.1795, -40.8975, 9.84634, -69.1795, 99.0557, 9.84634, -69.1795, 99.0557, 3.96488, -69.1795, -38.357, 9.84634, -73.7397, 99.0557, 9.84634, -69.1795, -40.8975, 9.84634, -69.1795, -38.357, 9.84634, -73.7397, 92.9023, 9.84634, -73.7397, 99.0557, 9.84634, -69.1795, -38.357, 9.84634, -95.9019, 92.9023, 9.84634, -73.7397, -38.357, 9.84634, -73.7397, -38.357, 9.84634, -95.9019, 92.9023, 9.84634, -95.9019, 92.9023, 9.84634, -73.7397, 99.0557, 9.84634, -100.462, -38.357, 9.84634, -95.9019, -35.063, 9.84634, -100.462, 99.0557, 9.84634, -100.462, 92.9023, 9.84634, -95.9019, -38.357, 9.84634, -95.9019)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_s35dk"]
+data = PackedVector3Array(-184.644, 13.6447, -225.356, -200, 13.6447, -210, -315.356, 13.6447, -225.356, -200, 13.6447, -210, -300, 13.6447, -210, -315.356, 13.6447, -225.356, -315.356, -3.64466, -225.356, -300, -3.64466, -210, -184.644, -3.64466, -225.356, -300, -3.64466, -210, -200, -3.64466, -210, -184.644, -3.64466, -225.356, -200, 13.6447, -210, -200, -3.64466, -210, -300, 13.6447, -210, -200, -3.64466, -210, -300, -3.64466, -210, -300, 13.6447, -210, -184.644, -3.64466, -225.356, -184.644, 13.6447, -225.356, -315.356, -3.64466, -225.356, -184.644, 13.6447, -225.356, -315.356, 13.6447, -225.356, -315.356, -3.64466, -225.356, -300, 13.6447, 0, -315.356, 13.6447, 0, -300, 13.6447, -210, -315.356, 13.6447, 0, -315.356, 13.6447, -225.356, -300, 13.6447, -210, -315.356, -3.64466, -225.356, -315.356, -3.64466, 0, -300, -3.64466, -210, -315.356, -3.64466, 0, -300, -3.64466, 0, -300, -3.64466, -210, -315.356, -3.64466, 0, -315.356, 13.6447, 0, -300, -3.64466, 0, -315.356, 13.6447, 0, -300, 13.6447, 0, -300, -3.64466, 0, -300, 13.6447, 0, -300, 13.6447, -210, -300, -3.64466, 0, -300, 13.6447, -210, -300, -3.64466, -210, -300, -3.64466, 0, -315.356, -3.64466, 0, -315.356, -3.64466, -225.356, -315.356, 13.6447, 0, -315.356, -3.64466, -225.356, -315.356, 13.6447, -225.356, -315.356, 13.6447, 0, -184.644, 13.6447, -225.356, -184.644, 13.6447, 0, -200, 13.6447, -210, -184.644, 13.6447, 0, -200, 13.6447, 0, -200, 13.6447, -210, -184.644, -3.64466, -225.356, -200, -3.64466, -210, -184.644, -3.64466, 0, -200, -3.64466, -210, -200, -3.64466, 0, -184.644, -3.64466, 0, -184.644, -3.64466, 0, -200, -3.64466, 0, -184.644, 13.6447, 0, -200, -3.64466, 0, -200, 13.6447, 0, -184.644, 13.6447, 0, -200, 13.6447, 0, -200, -3.64466, 0, -200, 13.6447, -210, -200, -3.64466, 0, -200, -3.64466, -210, -200, 13.6447, -210, -184.644, -3.64466, 0, -184.644, 13.6447, 0, -184.644, -3.64466, -225.356, -184.644, 13.6447, 0, -184.644, 13.6447, -225.356, -184.644, -3.64466, -225.356, -500, 0, -300, -500, 10, -300, -500, 0, 0, -500, 10, -300, -500, 10, 0, -500, 0, 0, -500, 0, -300, 0, 0, -300, -500, 10, -300, 0, 0, -300, 0, 10, -300, -500, 10, -300, 0, 0, 0, 0, 10, 0, 0, 0, -300, 0, 10, 0, 0, 10, -300, 0, 0, -300, -194.095, 10, -216.905, -194.095, 0, -216.905, -305.905, 10, -216.905, -194.095, 0, -216.905, -305.905, 2.38419e-07, -216.905, -305.905, 10, -216.905, -305.905, 10, 0, -500, 10, 0, -305.905, 10, -216.905, -500, 10, 0, -500, 10, -300, -305.905, 10, -216.905, -305.905, 0, 0, -305.905, 2.38419e-07, -216.905, -500, 0, 0, -305.905, 2.38419e-07, -216.905, -500, 0, -300, -500, 0, 0, -194.095, 0, 0, 0, 0, 0, -194.095, 0, -216.905, 0, 0, 0, 0, 0, -300, -194.095, 0, -216.905, -194.095, 0, -216.905, -194.095, 10, -216.905, -194.095, 0, 0, -194.095, 10, -216.905, -194.095, 10, 0, -194.095, 0, 0, -194.095, 10, 0, -194.095, 10, -216.905, 0, 10, 0, -194.095, 10, -216.905, 0, 10, -300, 0, 10, 0, -305.905, 2.38419e-07, -216.905, -194.095, 0, -216.905, -500, 0, -300, -194.095, 0, -216.905, 0, 0, -300, -500, 0, -300, -500, 0, 0, -500, 10, 0, -305.905, 0, 0, -500, 10, 0, -305.905, 10, 0, -305.905, 0, 0, -194.095, 0, 0, -194.095, 10, 0, 0, 0, 0, -194.095, 10, 0, 0, 10, 0, 0, 0, 0, -305.905, 0, 0, -305.905, 10, 0, -305.905, 2.38419e-07, -216.905, -305.905, 10, 0, -305.905, 10, -216.905, -305.905, 2.38419e-07, -216.905, 0, 10, -300, -194.095, 10, -216.905, -500, 10, -300, -194.095, 10, -216.905, -305.905, 10, -216.905, -500, 10, -300)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_284q4"]
+data = PackedVector3Array(-100, 10, 0, -100, 10, -210, 0, 10, 0, -100, 10, -210, 0, 10, -210, 0, 10, 0, -100, 10, -210, -100, 0, -210, 0, 10, -210, -100, 0, -210, 0, 0, -210, 0, 10, -210, -100, 0, -210, -100, 0, 0, 0, 0, -210, -100, 0, 0, 0, 0, 0, 0, 0, -210, -100, 0, 0, -100, 10, 0, 0, 0, 0, -100, 10, 0, 0, 10, 0, 0, 0, 0, 0, 10, 0, 0, 10, -210, 0, 0, 0, 0, 10, -210, 0, 0, -210, 0, 0, 0, -100, 0, 0, -100, 0, -210, -100, 10, 0, -100, 0, -210, -100, 10, -210, -100, 10, 0)
+
+[node name="Node3D" instance=ExtResource("1_x4chb")]
+
+[node name="SM_Buildings_Ramp_20_1x1_01" type="MeshInstance3D" parent="Level" index="1"]
+transform = Transform3D(-0.01, -8.74228e-10, 3.82137e-17, 0, -4.37114e-10, -0.01, 8.74228e-10, -0.01, 4.37114e-10, -4, 0, 3)
+mesh = ExtResource("21_6btg4")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Ramp_20_1x1_01" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Ramp_20_1x1_01/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_yo6q3")
+
+[node name="SM_Buildings_Ramp_25_1x1_01" type="MeshInstance3D" parent="Level" index="2"]
+transform = Transform3D(-0.01, -8.74228e-10, 3.82137e-17, 0, -4.37114e-10, -0.01, 8.74228e-10, -0.01, 4.37114e-10, -2, 0, 3)
+mesh = ExtResource("22_sl4om")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Ramp_25_1x1_01" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Ramp_25_1x1_01/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_p48rn")
+
+[node name="SM_Buildings_Ramp_30_1x1_01" type="MeshInstance3D" parent="Level" index="3"]
+transform = Transform3D(-0.01, -8.74228e-10, 3.82137e-17, 0, -4.37114e-10, -0.01, 8.74228e-10, -0.01, 4.37114e-10, 0, 0, 3)
+mesh = ExtResource("23_dtg4e")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Ramp_30_1x1_01" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Ramp_30_1x1_01/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_3jwke")
+
+[node name="SM_Buildings_Ramp_35_1x1_01" type="MeshInstance3D" parent="Level" index="4"]
+transform = Transform3D(-0.01, -8.74228e-10, 3.82137e-17, 0, -4.37114e-10, -0.01, 8.74228e-10, -0.01, 4.37114e-10, 2, 0, 3)
+mesh = ExtResource("24_ut2i6")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Ramp_35_1x1_01" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Ramp_35_1x1_01/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_j6jnj")
+
+[node name="SM_Buildings_Ramp_40_1x1_01" type="MeshInstance3D" parent="Level" index="5"]
+transform = Transform3D(-0.01, -8.74228e-10, 3.82137e-17, 0, -4.37114e-10, -0.01, 8.74228e-10, -0.01, 4.37114e-10, 4, 0, 3)
+mesh = ExtResource("25_0mnfp")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Ramp_40_1x1_01" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Ramp_40_1x1_01/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_khlio")
+
+[node name="SM_Buildings_Ramp_45_1x1_01" type="MeshInstance3D" parent="Level" index="6"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, -4, 0, -3)
+mesh = ExtResource("26_qw2y7")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Ramp_45_1x1_01" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Ramp_45_1x1_01/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_esdoc")
+
+[node name="SM_Buildings_Ramp_50_1x1_01" type="MeshInstance3D" parent="Level" index="7"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, -2, 0, -3)
+mesh = ExtResource("27_uuqa8")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Ramp_50_1x1_01" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Ramp_50_1x1_01/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_tn2uf")
+
+[node name="SM_Buildings_Ramp_55_1x1_01" type="MeshInstance3D" parent="Level" index="8"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 0, 0, -3)
+mesh = ExtResource("28_samc1")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Ramp_55_1x1_01" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Ramp_55_1x1_01/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_2cnu1")
+
+[node name="SM_Buildings_Ramp_60_1x1_01" type="MeshInstance3D" parent="Level" index="9"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 2, 0, -3)
+mesh = ExtResource("29_oaehd")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Ramp_60_1x1_01" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Ramp_60_1x1_01/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_a35kx")
+
+[node name="SM_Buildings_Ramp_65_1x1_01" type="MeshInstance3D" parent="Level" index="10"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 4, 0, -3)
+mesh = ExtResource("30_f8y3u")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Ramp_65_1x1_01" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Ramp_65_1x1_01/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_s0ive")
+
+[node name="SM_Buildings_Ramp_70_1x1_01" type="MeshInstance3D" parent="Level" index="11"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 6, 0, -3)
+mesh = ExtResource("31_0k1o5")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Ramp_70_1x1_01" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Ramp_70_1x1_01/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_ly6oy")
+
+[node name="SM_Buildings_Block_1x1_01" type="MeshInstance3D" parent="Level" index="12"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 5, -0.159, 3)
+mesh = ExtResource("19_ait7k")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Block_1x1_01" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Block_1x1_01/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_6ylw4")
+
+[node name="SM_Buildings_Block_1x1_02" type="MeshInstance3D" parent="Level" index="13"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 3, -0.297, 3)
+mesh = ExtResource("19_ait7k")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Block_1x1_02" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Block_1x1_02/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_6ylw4")
+
+[node name="SM_Buildings_Block_1x1_03" type="MeshInstance3D" parent="Level" index="14"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 1, -0.416, 3)
+mesh = ExtResource("19_ait7k")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Block_1x1_03" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Block_1x1_03/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_6ylw4")
+
+[node name="SM_Buildings_Block_1x1_04" type="MeshInstance3D" parent="Level" index="15"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, -1, -0.525, 3)
+mesh = ExtResource("19_ait7k")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Block_1x1_04" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Block_1x1_04/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_6ylw4")
+
+[node name="SM_Buildings_Block_1x1_05" type="MeshInstance3D" parent="Level" index="16"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, -3, -0.628, 3)
+mesh = ExtResource("19_ait7k")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Block_1x1_05" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Block_1x1_05/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_6ylw4")
+
+[node name="SM_Buildings_Block_1x1_06" type="MeshInstance3D" parent="Level" index="17"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, -4, 0, -4)
+mesh = ExtResource("19_ait7k")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Block_1x1_06" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Block_1x1_06/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_6ylw4")
+
+[node name="SM_Buildings_Block_1x1_07" type="MeshInstance3D" parent="Level" index="18"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, -2, 0.19, -4)
+mesh = ExtResource("19_ait7k")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Block_1x1_07" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Block_1x1_07/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_6ylw4")
+
+[node name="SM_Buildings_Block_1x1_14" type="MeshInstance3D" parent="Level" index="19"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, -2, -0.804, -4)
+mesh = ExtResource("19_ait7k")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Block_1x1_14" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Block_1x1_14/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_6ylw4")
+
+[node name="SM_Buildings_Block_1x1_08" type="MeshInstance3D" parent="Level" index="20"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 0, 0.432, -4)
+mesh = ExtResource("19_ait7k")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Block_1x1_08" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Block_1x1_08/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_6ylw4")
+
+[node name="SM_Buildings_Block_1x1_15" type="MeshInstance3D" parent="Level" index="21"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 0, -0.568, -4)
+mesh = ExtResource("19_ait7k")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Block_1x1_15" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Block_1x1_15/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_6ylw4")
+
+[node name="SM_Buildings_Block_1x1_09" type="MeshInstance3D" parent="Level" index="22"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 2, 0.735, -4)
+mesh = ExtResource("19_ait7k")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Block_1x1_09" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Block_1x1_09/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_6ylw4")
+
+[node name="SM_Buildings_Block_1x1_16" type="MeshInstance3D" parent="Level" index="23"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 2, -0.265, -4)
+mesh = ExtResource("19_ait7k")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Block_1x1_16" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Block_1x1_16/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_6ylw4")
+
+[node name="SM_Buildings_Block_1x1_10" type="MeshInstance3D" parent="Level" index="24"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 4, 1.146, -4)
+mesh = ExtResource("19_ait7k")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Block_1x1_10" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Block_1x1_10/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_6ylw4")
+
+[node name="SM_Buildings_Block_1x1_17" type="MeshInstance3D" parent="Level" index="25"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 4, 0.146, -4)
+mesh = ExtResource("19_ait7k")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Block_1x1_17" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Block_1x1_17/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_6ylw4")
+
+[node name="SM_Buildings_Block_1x1_18" type="MeshInstance3D" parent="Level" index="26"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 4, -0.854, -4)
+mesh = ExtResource("19_ait7k")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Block_1x1_18" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Block_1x1_18/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_6ylw4")
+
+[node name="SM_Buildings_Block_1x1_11" type="MeshInstance3D" parent="Level" index="27"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 6, 1.754, -4)
+mesh = ExtResource("19_ait7k")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Block_1x1_11" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Block_1x1_11/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_6ylw4")
+
+[node name="SM_Buildings_Block_1x1_12" type="MeshInstance3D" parent="Level" index="28"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 6, 0.754, -4)
+mesh = ExtResource("19_ait7k")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Block_1x1_12" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Block_1x1_12/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_6ylw4")
+
+[node name="SM_Buildings_Block_1x1_13" type="MeshInstance3D" parent="Level" index="29"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 6, -0.246, -4)
+mesh = ExtResource("19_ait7k")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_Block_1x1_13" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_Block_1x1_13/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_6ylw4")
+
+[node name="SM_Prop_Barrier_01" type="MeshInstance3D" parent="Level" index="30"]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, -9.75764, 0, 2)
+mesh = ExtResource("20_42xju")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Prop_Barrier_01" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Prop_Barrier_01/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_5l2dn")
+
+[node name="SM_Prop_Barrier_02" type="MeshInstance3D" parent="Level" index="31"]
+transform = Transform3D(-4.37114e-10, -0.01, 0, 0, 0, -0.01, 0.01, -4.37114e-10, 0, -9.26484, 0, 0)
+mesh = ExtResource("20_42xju")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Prop_Barrier_02" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Prop_Barrier_02/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_5l2dn")
+
+[node name="SM_Prop_Barrier_03" type="MeshInstance3D" parent="Level" index="32"]
+transform = Transform3D(-4.37114e-10, -0.01, 0, 0, 0, -0.01, 0.01, -4.37114e-10, 0, -10.265, 0, 0)
+mesh = ExtResource("20_42xju")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Prop_Barrier_03" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Prop_Barrier_03/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_5l2dn")
+
+[node name="SM_Prop_Barrier_04" type="MeshInstance3D" parent="Level" index="33"]
+transform = Transform3D(-4.37114e-10, -0.01, 0, 0, 0, -0.01, 0.01, -4.37114e-10, 0, -9.365, 0, -3)
+mesh = ExtResource("20_42xju")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Prop_Barrier_04" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Prop_Barrier_04/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_5l2dn")
+
+[node name="SM_Prop_Barrier_05" type="MeshInstance3D" parent="Level" index="34"]
+transform = Transform3D(-4.37114e-10, -0.01, 0, 0, 0, -0.01, 0.01, -4.37114e-10, 0, -10.165, 0, -3)
+mesh = ExtResource("20_42xju")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Prop_Barrier_05" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Prop_Barrier_05/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_5l2dn")
+
+[node name="SM_Prop_Barrier_06" type="MeshInstance3D" parent="Level" index="35"]
+transform = Transform3D(-4.37114e-10, -0.01, 0, 0, 0, -0.01, 0.01, -4.37114e-10, 0, -9.465, 0, -6)
+mesh = ExtResource("20_42xju")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Prop_Barrier_06" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Prop_Barrier_06/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_5l2dn")
+
+[node name="SM_Prop_Barrier_07" type="MeshInstance3D" parent="Level" index="36"]
+transform = Transform3D(-4.37114e-10, -0.01, 0, 0, 0, -0.01, 0.01, -4.37114e-10, 0, -10.065, 0, -6)
+mesh = ExtResource("20_42xju")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Prop_Barrier_07" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Prop_Barrier_07/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_5l2dn")
+
+[node name="SM_Buildings_WallDoor_5x3_01" type="MeshInstance3D" parent="Level" index="37"]
+transform = Transform3D(-4.37114e-10, -0.01, 0, 0, 0, -0.01, 0.01, -4.37114e-10, 0, -7, 0, 3)
+mesh = ExtResource("21_khlio")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_WallDoor_5x3_01" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_WallDoor_5x3_01/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_s35dk")
+
+[node name="SM_Buildings_Door_01" type="MeshInstance3D" parent="Level/SM_Buildings_WallDoor_5x3_01" index="1"]
+transform = Transform3D(-0.5, -0.866025, 0, 0.866025, -0.5, 0, 0, 0, 1, -200, 0, 0)
+mesh = ExtResource("22_esdoc")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/SM_Buildings_WallDoor_5x3_01/SM_Buildings_Door_01" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/SM_Buildings_WallDoor_5x3_01/SM_Buildings_Door_01/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_284q4")

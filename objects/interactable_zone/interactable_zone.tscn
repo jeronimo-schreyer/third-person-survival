@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddck1kyrs5me5"]
+
+[ext_resource type="Script" uid="uid://dm7uuppcmhk6r" path="res://objects/interactable_zone/interactable_zone.gd" id="1_tmcn5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dcisk"]
+radius = 0.3
+
+[node name="InteractableZone" type="Area3D"]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_tmcn5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_dcisk")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

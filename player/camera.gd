@@ -28,7 +28,8 @@ func _init() -> void:
 		mouse_captured = mouse_captured
 
 
-func _unhandled_input(event) -> void:	if not Engine.is_editor_hint():
+func _unhandled_input(event) -> void:
+	if not Engine.is_editor_hint() and is_active():
 		# trigger whenever the mouse moves
 		if event is InputEventMouseMotion and mouse_captured:
 

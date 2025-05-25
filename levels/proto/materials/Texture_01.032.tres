@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b5f0lnwhyrmfd"]
+
+[ext_resource type="Texture2D" uid="uid://dss5n3hdhbf0q" path="res://levels/proto/models/Untitled_PolygonPrototype_Texture_08.png" id="1_28boc"]
+
+[resource]
+resource_name = "Texture_01.032"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_28boc")
+metallic = 0.5
+roughness = 0.748767
