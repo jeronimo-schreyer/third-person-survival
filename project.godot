@@ -63,6 +63,10 @@ ui_down={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_5="Interactables"
+
 [phantom_camera]
 
 tips/show_jitter_tips=false

@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name PlayerBody
 
 
 @export var _rotation_speed := 12.0
@@ -13,6 +14,11 @@ var speed: float
 var crouched := false
 var aiming := false
 var target_aim_position := Vector3.ZERO
+
+
+# Add support for is_xr_class on XRTools classes
+func is_xr_class(_name : String) -> bool:
+	return _name == "PlayerBody"
 
 
 func _ready() -> void:
@@ -88,12 +94,13 @@ func _on_grounded_state_physics_processing(delta: float) -> void:
 	$Armature.global_rotation.y = lerp_angle($Armature.rotation.y, target_angle, _rotation_speed * delta)
 
 	# update animation tree properties
-	var velocity_normalized = velocity.length() / _run_speed if get_real_velocity().length() > 0.1 else Vector3.ZERO
+	var velocity_normalized = velocity.length() / _run_speed if get_real_velocity().length() > 0.1 else 0.0
 	var computed_direction = Vector2(h_input, -v_input) * velocity_normalized if get_real_velocity().length() > 0.1 else Vector2.ZERO
 	$AnimationTree.set("parameters/ground/movement/stand/walk/blend_position", velocity_normalized)
 	$AnimationTree.set("parameters/ground/movement/stand/strafe/blend_position", computed_direction)
 	$AnimationTree.set("parameters/ground/movement/crouch/walk/blend_position", velocity_normalized)
 	$AnimationTree.set("parameters/ground/movement/crouch/strafe/blend_position", computed_direction)
+
 
 	# update other properties
 	$Armature/Skeleton3D/SpineLookAt.active = aiming
@@ -130,6 +137,7 @@ func _on_grounded_state_unhandled_input(event: InputEvent) -> void:
 		match event.button_index:
 			MOUSE_BUTTON_RIGHT:
 				aiming = event.is_pressed()
+				$LookAtTarget/CollisionShape3D.disabled = !aiming
 
 				# Tween between states
 				var aiming_properties = [
