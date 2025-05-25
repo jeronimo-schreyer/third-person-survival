@@ -53,7 +53,7 @@ func _set_enabled(p_enabled: bool) -> void:
 # Called when the grab distance has been modified
 func _set_interaction_distance(new_value: float) -> void:
 	interaction_distance = new_value
-	if is_inside_tree() and $CollisionShape3D:
+	if is_inside_tree() and "radius" in $CollisionShape3D.shape:
 		$CollisionShape3D.shape.radius = interaction_distance
 
 
