@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://3txvffmy1dl4"]
 
-[ext_resource type="PackedScene" uid="uid://dwoy8b4fujdb5" path="res://player/player.tscn" id="1_u52ul"]
+[ext_resource type="PackedScene" uid="uid://iaukrh1tq6b4" path="res://player/player.tscn" id="1_u52ul"]
 [ext_resource type="Script" uid="uid://ctvx8g27xt3kb" path="res://player/camera.gd" id="2_vonw3"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_f2txt"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_oi3di"]

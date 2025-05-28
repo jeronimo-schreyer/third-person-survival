@@ -1,51 +1,55 @@
-[gd_scene load_steps=79 format=3 uid="uid://dwoy8b4fujdb5"]
+[gd_scene load_steps=85 format=3 uid="uid://iaukrh1tq6b4"]
 
-[ext_resource type="Script" uid="uid://dbu5ktuokjttm" path="res://player/player.gd" id="1_oul6g"]
-[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_yw30f"]
-[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_qjkh3"]
-[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_g6k8r"]
-[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_g6k8r"]
-[ext_resource type="Script" uid="uid://le5w1cm0ul8p" path="res://addons/godot_state_charts/expression_guard.gd" id="6_boad6"]
-[ext_resource type="PackedScene" uid="uid://dtrhxk28ispmj" path="res://player/model/PolygonSyntyCharacter.fbx" id="8_hg6s5"]
-[ext_resource type="Animation" uid="uid://bvav1ujiulfhk" path="res://player/animations/idle/A_Idle_Standing_Masc.anim" id="9_8t03j"]
-[ext_resource type="Animation" uid="uid://cvo47qpctd86l" path="res://player/animations/walk/A_Walk_F_Masc.anim" id="10_2ieo8"]
-[ext_resource type="Animation" uid="uid://b6ow2cnpjk2oy" path="res://player/animations/fall/A_InAIr_FallShort_Masc.anim" id="12_ebec5"]
-[ext_resource type="Animation" uid="uid://cvkcjmn72gev8" path="res://player/animations/idle/A_Idle_Crouching_Masc.anim" id="12_yllr7"]
-[ext_resource type="Animation" uid="uid://b17ip088g2kwj" path="res://player/animations/crouch/A_Crouch_FwdStrafeF_Masc.anim" id="13_kb6p2"]
-[ext_resource type="Animation" uid="uid://q3qr4j3t8e51" path="res://player/animations/run/A_Run_F_Masc.anim" id="13_yllr7"]
-[ext_resource type="Animation" uid="uid://b5acg1io3unid" path="res://player/animations/walk/A_Walk_BckStrafeBL_Masc.anim" id="14_x7c3f"]
-[ext_resource type="Animation" uid="uid://cgfkb130rgols" path="res://player/animations/walk/A_Walk_BckStrafeBR_Masc.anim" id="15_bjvpn"]
-[ext_resource type="Animation" uid="uid://c6jbbexp44lgi" path="res://player/animations/walk/A_Walk_BckStrafeB_Masc.anim" id="16_s7qer"]
-[ext_resource type="Animation" uid="uid://tw83gtbvqtw0" path="res://player/animations/walk/A_Walk_FwdStrafeFL_Masc.anim" id="17_g4c7l"]
-[ext_resource type="Animation" uid="uid://drs6xfipmegxv" path="res://player/animations/walk/A_Walk_FwdStrafeFR_Masc.anim" id="18_knn7v"]
-[ext_resource type="Animation" uid="uid://ba27yuup3lcwk" path="res://player/animations/walk/A_Walk_FwdStrafeF_Masc.anim" id="19_7pqkx"]
-[ext_resource type="Animation" uid="uid://0utunq85v3mh" path="res://player/animations/walk/A_Walk_FwdStrafeL_Masc.anim" id="20_uw77l"]
-[ext_resource type="Animation" uid="uid://buxi44suqbiqi" path="res://player/animations/walk/A_Walk_FwdStrafeR_Masc.anim" id="21_rptt4"]
-[ext_resource type="Animation" uid="uid://gui2q3uh50pp" path="res://player/animations/crouch/A_Crouch_BckStrafeBR_Masc.anim" id="22_rptt4"]
-[ext_resource type="Animation" uid="uid://dfwnehgnbo268" path="res://player/animations/crouch/A_Crouch_BckStrafeB_Masc.anim" id="23_r7pn3"]
-[ext_resource type="Animation" uid="uid://kjpcxl15kxa8" path="res://player/animations/crouch/A_Crouch_FwdStrafeFL_Masc.anim" id="24_b8hi5"]
-[ext_resource type="Animation" uid="uid://by2twod8ij4oa" path="res://player/animations/crouch/A_Crouch_FwdStrafeFR_Masc.anim" id="25_2uvqg"]
-[ext_resource type="Animation" uid="uid://dq5f5yl2jp24i" path="res://player/animations/crouch/A_Crouch_FwdStrafeL_Masc.anim" id="26_1s1yo"]
-[ext_resource type="Animation" uid="uid://dg8emk2g0pgvx" path="res://player/animations/crouch/A_Crouch_FwdStrafeR_Masc.anim" id="27_5ejfk"]
-[ext_resource type="Animation" uid="uid://csnn0imhvrqsr" path="res://player/animations/crouch/A_Crouch_BckStrafeBL_Masc.anim" id="28_jd2rm"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_2xmo7"]
+[ext_resource type="Script" uid="uid://ctvx8g27xt3kb" path="res://player/camera.gd" id="2_2xmo7"]
+[ext_resource type="Script" uid="uid://dbu5ktuokjttm" path="res://player/player.gd" id="2_8u37r"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_i7u44"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_vi4lp"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="4_6rcso"]
+[ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="4_k34wu"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_ep70x"]
+[ext_resource type="Script" uid="uid://le5w1cm0ul8p" path="res://addons/godot_state_charts/expression_guard.gd" id="6_etybo"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="7_j2e1x"]
+[ext_resource type="PackedScene" uid="uid://dtrhxk28ispmj" path="res://player/model/PolygonSyntyCharacter.fbx" id="8_1exun"]
+[ext_resource type="Animation" uid="uid://csnn0imhvrqsr" path="res://player/animations/crouch/A_Crouch_BckStrafeBL_Masc.anim" id="9_ocv4w"]
+[ext_resource type="Animation" uid="uid://gui2q3uh50pp" path="res://player/animations/crouch/A_Crouch_BckStrafeBR_Masc.anim" id="10_dxsh3"]
+[ext_resource type="Animation" uid="uid://dfwnehgnbo268" path="res://player/animations/crouch/A_Crouch_BckStrafeB_Masc.anim" id="11_lslvn"]
+[ext_resource type="Animation" uid="uid://kjpcxl15kxa8" path="res://player/animations/crouch/A_Crouch_FwdStrafeFL_Masc.anim" id="12_8xq7o"]
+[ext_resource type="Animation" uid="uid://by2twod8ij4oa" path="res://player/animations/crouch/A_Crouch_FwdStrafeFR_Masc.anim" id="13_2dalt"]
+[ext_resource type="Animation" uid="uid://dq5f5yl2jp24i" path="res://player/animations/crouch/A_Crouch_FwdStrafeL_Masc.anim" id="14_8epn6"]
+[ext_resource type="Animation" uid="uid://dg8emk2g0pgvx" path="res://player/animations/crouch/A_Crouch_FwdStrafeR_Masc.anim" id="15_50nrs"]
+[ext_resource type="Animation" uid="uid://b5acg1io3unid" path="res://player/animations/walk/A_Walk_BckStrafeBL_Masc.anim" id="16_1xnxx"]
+[ext_resource type="Animation" uid="uid://cgfkb130rgols" path="res://player/animations/walk/A_Walk_BckStrafeBR_Masc.anim" id="17_507os"]
+[ext_resource type="Animation" uid="uid://c6jbbexp44lgi" path="res://player/animations/walk/A_Walk_BckStrafeB_Masc.anim" id="18_1xdm8"]
+[ext_resource type="Animation" uid="uid://tw83gtbvqtw0" path="res://player/animations/walk/A_Walk_FwdStrafeFL_Masc.anim" id="19_tlwx8"]
+[ext_resource type="Animation" uid="uid://drs6xfipmegxv" path="res://player/animations/walk/A_Walk_FwdStrafeFR_Masc.anim" id="20_rob3c"]
+[ext_resource type="Animation" uid="uid://ba27yuup3lcwk" path="res://player/animations/walk/A_Walk_FwdStrafeF_Masc.anim" id="21_dur14"]
+[ext_resource type="Animation" uid="uid://0utunq85v3mh" path="res://player/animations/walk/A_Walk_FwdStrafeL_Masc.anim" id="22_je77i"]
+[ext_resource type="Animation" uid="uid://buxi44suqbiqi" path="res://player/animations/walk/A_Walk_FwdStrafeR_Masc.anim" id="23_d2860"]
+[ext_resource type="Animation" uid="uid://cvkcjmn72gev8" path="res://player/animations/idle/A_Idle_Crouching_Masc.anim" id="24_mhtby"]
+[ext_resource type="Animation" uid="uid://b17ip088g2kwj" path="res://player/animations/crouch/A_Crouch_FwdStrafeF_Masc.anim" id="25_2s1lv"]
+[ext_resource type="Animation" uid="uid://b6ow2cnpjk2oy" path="res://player/animations/fall/A_InAIr_FallShort_Masc.anim" id="26_8vtrd"]
+[ext_resource type="Animation" uid="uid://q3qr4j3t8e51" path="res://player/animations/run/A_Run_F_Masc.anim" id="27_l7dcw"]
+[ext_resource type="Animation" uid="uid://bvav1ujiulfhk" path="res://player/animations/idle/A_Idle_Standing_Masc.anim" id="28_uq8pf"]
+[ext_resource type="Animation" uid="uid://cvo47qpctd86l" path="res://player/animations/walk/A_Walk_F_Masc.anim" id="29_i0lyu"]
 
 [sub_resource type="Resource" id="Resource_2ieo8"]
-script = ExtResource("6_boad6")
+script = ExtResource("6_etybo")
 expression = "!is_on_floor"
 metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 
 [sub_resource type="Resource" id="Resource_ebec5"]
-script = ExtResource("6_boad6")
+script = ExtResource("6_etybo")
 expression = "velocity.length() > 0.1"
 metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 
 [sub_resource type="Resource" id="Resource_yllr7"]
-script = ExtResource("6_boad6")
+script = ExtResource("6_etybo")
 expression = "velocity.length() <= 0.1"
 metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 
 [sub_resource type="Resource" id="Resource_kb6p2"]
-script = ExtResource("6_boad6")
+script = ExtResource("6_etybo")
 expression = "is_on_floor"
 metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 
@@ -101,27 +105,27 @@ _data = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2ieo8"]
 _data = {
-&"A_Crouch_BckStrafeBL_Masc": ExtResource("28_jd2rm"),
-&"A_Crouch_BckStrafeBR_Masc": ExtResource("22_rptt4"),
-&"A_Crouch_BckStrafeB_Masc": ExtResource("23_r7pn3"),
-&"A_Crouch_FwdStrafeFL_Masc": ExtResource("24_b8hi5"),
-&"A_Crouch_FwdStrafeFR_Masc": ExtResource("25_2uvqg"),
-&"A_Crouch_FwdStrafeL_Masc": ExtResource("26_1s1yo"),
-&"A_Crouch_FwdStrafeR_Masc": ExtResource("27_5ejfk"),
-&"A_Walk_BckStrafeBL_Masc": ExtResource("14_x7c3f"),
-&"A_Walk_BckStrafeBR_Masc": ExtResource("15_bjvpn"),
-&"A_Walk_BckStrafeB_Masc": ExtResource("16_s7qer"),
-&"A_Walk_FwdStrafeFL_Masc": ExtResource("17_g4c7l"),
-&"A_Walk_FwdStrafeFR_Masc": ExtResource("18_knn7v"),
-&"A_Walk_FwdStrafeF_Masc": ExtResource("19_7pqkx"),
-&"A_Walk_FwdStrafeL_Masc": ExtResource("20_uw77l"),
-&"A_Walk_FwdStrafeR_Masc": ExtResource("21_rptt4"),
-&"Crouching Idle": ExtResource("12_yllr7"),
-&"Crouching Walk": ExtResource("13_kb6p2"),
-&"Fall": ExtResource("12_ebec5"),
-&"Run": ExtResource("13_yllr7"),
-&"Standing Idle": ExtResource("9_8t03j"),
-&"Standing Walk": ExtResource("10_2ieo8")
+&"A_Crouch_BckStrafeBL_Masc": ExtResource("9_ocv4w"),
+&"A_Crouch_BckStrafeBR_Masc": ExtResource("10_dxsh3"),
+&"A_Crouch_BckStrafeB_Masc": ExtResource("11_lslvn"),
+&"A_Crouch_FwdStrafeFL_Masc": ExtResource("12_8xq7o"),
+&"A_Crouch_FwdStrafeFR_Masc": ExtResource("13_2dalt"),
+&"A_Crouch_FwdStrafeL_Masc": ExtResource("14_8epn6"),
+&"A_Crouch_FwdStrafeR_Masc": ExtResource("15_50nrs"),
+&"A_Walk_BckStrafeBL_Masc": ExtResource("16_1xnxx"),
+&"A_Walk_BckStrafeBR_Masc": ExtResource("17_507os"),
+&"A_Walk_BckStrafeB_Masc": ExtResource("18_1xdm8"),
+&"A_Walk_FwdStrafeFL_Masc": ExtResource("19_tlwx8"),
+&"A_Walk_FwdStrafeFR_Masc": ExtResource("20_rob3c"),
+&"A_Walk_FwdStrafeF_Masc": ExtResource("21_dur14"),
+&"A_Walk_FwdStrafeL_Masc": ExtResource("22_je77i"),
+&"A_Walk_FwdStrafeR_Masc": ExtResource("23_d2860"),
+&"Crouching Idle": ExtResource("24_mhtby"),
+&"Crouching Walk": ExtResource("25_2s1lv"),
+&"Fall": ExtResource("26_8vtrd"),
+&"Run": ExtResource("27_l7dcw"),
+&"Standing Idle": ExtResource("28_uq8pf"),
+&"Standing Walk": ExtResource("29_i0lyu")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2ieo8"]
@@ -334,79 +338,111 @@ states/ground/position = Vector2(476.25, 99.875)
 transitions = ["Start", "ground", SubResource("AnimationNodeStateMachineTransition_7pqkx"), "ground", "fall", SubResource("AnimationNodeStateMachineTransition_uw77l"), "fall", "ground", SubResource("AnimationNodeStateMachineTransition_rptt4")]
 graph_offset = Vector2(-97, -53)
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="Resource" id="Resource_ic8jn"]
+script = ExtResource("3_vi4lp")
+duration = 0.24
+transition = 0
+ease = 2
+
+[sub_resource type="Resource" id="Resource_0nj4q"]
+script = ExtResource("4_k34wu")
+keep_aspect = 1
+cull_mask = 1048575
+h_offset = 0.0
+v_offset = 0.0
+projection = 0
+fov = 75.0
+size = 1.0
+frustum_offset = Vector2(0, 0)
+near = 0.05
+far = 4000.0
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("1_2xmo7")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="Player" type="CharacterBody3D" parent="."]
 floor_constant_speed = true
 floor_max_angle = 0.925025
 floor_snap_length = 0.12
-script = ExtResource("1_oul6g")
+script = ExtResource("2_8u37r")
 _acceleration = 10.0
 _walk_speed = 1.3
 _run_speed = 2.7
 
-[node name="States" type="Node" parent="."]
-script = ExtResource("2_yw30f")
+[node name="States" type="Node" parent="Player"]
+script = ExtResource("3_i7u44")
 metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="Root" type="Node" parent="States"]
-script = ExtResource("3_qjkh3")
+[node name="Root" type="Node" parent="Player/States"]
+script = ExtResource("4_6rcso")
 initial_state = NodePath("Grounded")
 
-[node name="Grounded" type="Node" parent="States/Root"]
-script = ExtResource("3_qjkh3")
+[node name="Grounded" type="Node" parent="Player/States/Root"]
+script = ExtResource("4_6rcso")
 initial_state = NodePath("Idle")
 
-[node name="ToAirborne" type="Node" parent="States/Root/Grounded"]
-script = ExtResource("5_g6k8r")
+[node name="ToAirborne" type="Node" parent="Player/States/Root/Grounded"]
+script = ExtResource("5_ep70x")
 to = NodePath("../../Airborne")
 guard = SubResource("Resource_2ieo8")
 delay_in_seconds = "0.0"
 
-[node name="Idle" type="Node" parent="States/Root/Grounded"]
-script = ExtResource("4_g6k8r")
+[node name="Idle" type="Node" parent="Player/States/Root/Grounded"]
+script = ExtResource("7_j2e1x")
 
-[node name="ToMoving" type="Node" parent="States/Root/Grounded/Idle"]
-script = ExtResource("5_g6k8r")
+[node name="ToMoving" type="Node" parent="Player/States/Root/Grounded/Idle"]
+script = ExtResource("5_ep70x")
 to = NodePath("../../Moving")
 guard = SubResource("Resource_ebec5")
 delay_in_seconds = "0.0"
 
-[node name="Moving" type="Node" parent="States/Root/Grounded"]
-script = ExtResource("4_g6k8r")
+[node name="Moving" type="Node" parent="Player/States/Root/Grounded"]
+script = ExtResource("7_j2e1x")
 
-[node name="ToIdle" type="Node" parent="States/Root/Grounded/Moving"]
-script = ExtResource("5_g6k8r")
+[node name="ToIdle" type="Node" parent="Player/States/Root/Grounded/Moving"]
+script = ExtResource("5_ep70x")
 to = NodePath("../../Idle")
 guard = SubResource("Resource_yllr7")
 delay_in_seconds = "0.0"
 
-[node name="Airborne" type="Node" parent="States/Root"]
-script = ExtResource("4_g6k8r")
+[node name="Airborne" type="Node" parent="Player/States/Root"]
+script = ExtResource("7_j2e1x")
 
-[node name="ToGrounded" type="Node" parent="States/Root/Airborne"]
-script = ExtResource("5_g6k8r")
+[node name="ToGrounded" type="Node" parent="Player/States/Root/Airborne"]
+script = ExtResource("5_ep70x")
 to = NodePath("../../Grounded")
 guard = SubResource("Resource_kb6p2")
 delay_in_seconds = "0.0"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_g1dw6")
 
-[node name="LookAtTarget" type="Area3D" parent="."]
+[node name="LookAtTarget" type="Area3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -3)
 collision_layer = 16
 collision_mask = 16
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LookAtTarget"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/LookAtTarget"]
 shape = SubResource("SphereShape3D_rptt4")
 
-[node name="Armature" parent="." instance=ExtResource("8_hg6s5")]
+[node name="Armature" parent="Player" instance=ExtResource("8_1exun")]
 
-[node name="Skeleton3D" parent="Armature" index="0"]
+[node name="Skeleton3D" parent="Player/Armature" index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 bones/1/position = Vector3(0, 0.876276, 0)
 
-[node name="SpineLookAt" type="LookAtModifier3D" parent="Armature/Skeleton3D" index="1"]
+[node name="SpineLookAt" type="LookAtModifier3D" parent="Player/Armature/Skeleton3D" index="1"]
 target_node = NodePath("../../../LookAtTarget")
 bone_name = "Spine_01"
 bone = 2
@@ -427,7 +463,7 @@ secondary_positive_damp_threshold = 1.0
 secondary_negative_limit_angle = 0.0
 secondary_negative_damp_threshold = 1.0
 
-[node name="HeadLookAt" type="LookAtModifier3D" parent="Armature/Skeleton3D" index="2"]
+[node name="HeadLookAt" type="LookAtModifier3D" parent="Player/Armature/Skeleton3D" index="2"]
 target_node = NodePath("../../../LookAtTarget")
 bone_name = "Head"
 bone = 6
@@ -445,13 +481,13 @@ secondary_positive_damp_threshold = 0.1
 secondary_negative_limit_angle = 0.785398
 secondary_negative_damp_threshold = 0.1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Armature"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Armature"]
 libraries = {
 &"": SubResource("AnimationLibrary_kb6p2"),
 &"Player": SubResource("AnimationLibrary_2ieo8")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="Player"]
 root_node = NodePath("../Armature")
 tree_root = SubResource("AnimationNodeStateMachine_c35mf")
 anim_player = NodePath("../Armature/AnimationPlayer")
@@ -466,9 +502,23 @@ parameters/ground/movement/stand/aiming/blend_amount = 0.0
 parameters/ground/movement/stand/strafe/blend_position = null
 parameters/ground/movement/stand/walk/blend_position = 0.0
 
-[connection signal="state_entered" from="States/Root/Grounded" to="." method="_on_grounded_state_entered"]
-[connection signal="state_physics_processing" from="States/Root/Grounded" to="." method="_on_grounded_state_physics_processing"]
-[connection signal="state_unhandled_input" from="States/Root/Grounded" to="." method="_on_grounded_state_unhandled_input"]
-[connection signal="state_entered" from="States/Root/Airborne" to="." method="_on_airborne_state_entered"]
+[node name="Cameras" type="Node3D" parent="."]
 
-[editable path="Armature"]
+[node name="FollowPlayer" type="Node3D" parent="Cameras" node_paths=PackedStringArray("follow_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1)
+script = ExtResource("2_2xmo7")
+min_pitch = -70.0
+priority = 1
+follow_mode = 6
+follow_target = NodePath("../../Player")
+tween_resource = SubResource("Resource_ic8jn")
+camera_3d_resource = SubResource("Resource_0nj4q")
+follow_offset = Vector3(0, 2, 0)
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[connection signal="state_entered" from="Player/States/Root/Grounded" to="Player" method="_on_grounded_state_entered"]
+[connection signal="state_physics_processing" from="Player/States/Root/Grounded" to="Player" method="_on_grounded_state_physics_processing"]
+[connection signal="state_unhandled_input" from="Player/States/Root/Grounded" to="Player" method="_on_grounded_state_unhandled_input"]
+[connection signal="state_entered" from="Player/States/Root/Airborne" to="Player" method="_on_airborne_state_entered"]
+
+[editable path="Player/Armature"]
