@@ -1,10 +1,11 @@
-[gd_scene load_steps=85 format=3 uid="uid://iaukrh1tq6b4"]
+[gd_scene load_steps=88 format=3 uid="uid://iaukrh1tq6b4"]
 
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_2xmo7"]
 [ext_resource type="Script" uid="uid://ctvx8g27xt3kb" path="res://player/camera.gd" id="2_2xmo7"]
 [ext_resource type="Script" uid="uid://dbu5ktuokjttm" path="res://player/player.gd" id="2_8u37r"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_i7u44"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_vi4lp"]
+[ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="4_5ejfk"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="4_6rcso"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="4_k34wu"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_ep70x"]
@@ -51,6 +52,16 @@ metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 [sub_resource type="Resource" id="Resource_kb6p2"]
 script = ExtResource("6_etybo")
 expression = "is_on_floor"
+metadata/_custom_type_script = "uid://le5w1cm0ul8p"
+
+[sub_resource type="Resource" id="Resource_jd2rm"]
+script = ExtResource("6_etybo")
+expression = "aiming"
+metadata/_custom_type_script = "uid://le5w1cm0ul8p"
+
+[sub_resource type="Resource" id="Resource_q28gw"]
+script = ExtResource("6_etybo")
+expression = "!aiming"
 metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g1dw6"]
@@ -358,7 +369,7 @@ near = 0.05
 far = 4000.0
 metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
-[node name="Node3D" type="Node3D"]
+[node name="Player" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 physics_interpolation_mode = 1
@@ -370,7 +381,7 @@ process_physics_priority = 300
 script = ExtResource("1_2xmo7")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="Player" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 floor_constant_speed = true
 floor_max_angle = 0.925025
 floor_snap_length = 0.12
@@ -379,70 +390,97 @@ _acceleration = 10.0
 _walk_speed = 1.3
 _run_speed = 2.7
 
-[node name="States" type="Node" parent="Player"]
+[node name="States" type="Node" parent="CharacterBody3D"]
 script = ExtResource("3_i7u44")
 metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="Root" type="Node" parent="Player/States"]
+[node name="Root" type="Node" parent="CharacterBody3D/States"]
+script = ExtResource("4_5ejfk")
+metadata/_custom_type_script = "uid://c1vp0ojjvaby1"
+
+[node name="Character" type="Node" parent="CharacterBody3D/States/Root"]
 script = ExtResource("4_6rcso")
 initial_state = NodePath("Grounded")
+metadata/_custom_type_script = "uid://c1vp0ojjvaby1"
 
-[node name="Grounded" type="Node" parent="Player/States/Root"]
+[node name="Grounded" type="Node" parent="CharacterBody3D/States/Root/Character"]
 script = ExtResource("4_6rcso")
 initial_state = NodePath("Idle")
 
-[node name="ToAirborne" type="Node" parent="Player/States/Root/Grounded"]
+[node name="ToAirborne" type="Node" parent="CharacterBody3D/States/Root/Character/Grounded"]
 script = ExtResource("5_ep70x")
 to = NodePath("../../Airborne")
 guard = SubResource("Resource_2ieo8")
 delay_in_seconds = "0.0"
 
-[node name="Idle" type="Node" parent="Player/States/Root/Grounded"]
+[node name="Idle" type="Node" parent="CharacterBody3D/States/Root/Character/Grounded"]
 script = ExtResource("7_j2e1x")
 
-[node name="ToMoving" type="Node" parent="Player/States/Root/Grounded/Idle"]
+[node name="ToMoving" type="Node" parent="CharacterBody3D/States/Root/Character/Grounded/Idle"]
 script = ExtResource("5_ep70x")
 to = NodePath("../../Moving")
 guard = SubResource("Resource_ebec5")
 delay_in_seconds = "0.0"
 
-[node name="Moving" type="Node" parent="Player/States/Root/Grounded"]
+[node name="Moving" type="Node" parent="CharacterBody3D/States/Root/Character/Grounded"]
 script = ExtResource("7_j2e1x")
 
-[node name="ToIdle" type="Node" parent="Player/States/Root/Grounded/Moving"]
+[node name="ToIdle" type="Node" parent="CharacterBody3D/States/Root/Character/Grounded/Moving"]
 script = ExtResource("5_ep70x")
 to = NodePath("../../Idle")
 guard = SubResource("Resource_yllr7")
 delay_in_seconds = "0.0"
 
-[node name="Airborne" type="Node" parent="Player/States/Root"]
+[node name="Airborne" type="Node" parent="CharacterBody3D/States/Root/Character"]
 script = ExtResource("7_j2e1x")
 
-[node name="ToGrounded" type="Node" parent="Player/States/Root/Airborne"]
+[node name="ToGrounded" type="Node" parent="CharacterBody3D/States/Root/Character/Airborne"]
 script = ExtResource("5_ep70x")
 to = NodePath("../../Grounded")
 guard = SubResource("Resource_kb6p2")
 delay_in_seconds = "0.0"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+[node name="Camera" type="Node" parent="CharacterBody3D/States/Root"]
+script = ExtResource("4_6rcso")
+initial_state = NodePath("FreeLook")
+
+[node name="FreeLook" type="Node" parent="CharacterBody3D/States/Root/Camera"]
+script = ExtResource("7_j2e1x")
+
+[node name="ToAiming" type="Node" parent="CharacterBody3D/States/Root/Camera/FreeLook"]
+script = ExtResource("5_ep70x")
+to = NodePath("../../Aiming")
+guard = SubResource("Resource_jd2rm")
+delay_in_seconds = "0.0"
+
+[node name="Aiming" type="Node" parent="CharacterBody3D/States/Root/Camera"]
+script = ExtResource("7_j2e1x")
+
+[node name="ToFreelook" type="Node" parent="CharacterBody3D/States/Root/Camera/Aiming"]
+script = ExtResource("5_ep70x")
+to = NodePath("../../FreeLook")
+guard = SubResource("Resource_q28gw")
+delay_in_seconds = "0.0"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_g1dw6")
 
-[node name="LookAtTarget" type="Area3D" parent="Player"]
+[node name="LookAtTarget" type="Area3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -3)
 collision_layer = 16
 collision_mask = 16
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/LookAtTarget"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/LookAtTarget"]
 shape = SubResource("SphereShape3D_rptt4")
 
-[node name="Armature" parent="Player" instance=ExtResource("8_1exun")]
+[node name="Armature" parent="CharacterBody3D" instance=ExtResource("8_1exun")]
 
-[node name="Skeleton3D" parent="Player/Armature" index="0"]
+[node name="Skeleton3D" parent="CharacterBody3D/Armature" index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 bones/1/position = Vector3(0, 0.876276, 0)
 
-[node name="SpineLookAt" type="LookAtModifier3D" parent="Player/Armature/Skeleton3D" index="1"]
+[node name="SpineLookAt" type="LookAtModifier3D" parent="CharacterBody3D/Armature/Skeleton3D" index="1"]
 target_node = NodePath("../../../LookAtTarget")
 bone_name = "Spine_01"
 bone = 2
@@ -463,7 +501,7 @@ secondary_positive_damp_threshold = 1.0
 secondary_negative_limit_angle = 0.0
 secondary_negative_damp_threshold = 1.0
 
-[node name="HeadLookAt" type="LookAtModifier3D" parent="Player/Armature/Skeleton3D" index="2"]
+[node name="HeadLookAt" type="LookAtModifier3D" parent="CharacterBody3D/Armature/Skeleton3D" index="2"]
 target_node = NodePath("../../../LookAtTarget")
 bone_name = "Head"
 bone = 6
@@ -481,13 +519,13 @@ secondary_positive_damp_threshold = 0.1
 secondary_negative_limit_angle = 0.785398
 secondary_negative_damp_threshold = 0.1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Armature"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody3D/Armature"]
 libraries = {
 &"": SubResource("AnimationLibrary_kb6p2"),
 &"Player": SubResource("AnimationLibrary_2ieo8")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="Player"]
+[node name="AnimationTree" type="AnimationTree" parent="CharacterBody3D"]
 root_node = NodePath("../Armature")
 tree_root = SubResource("AnimationNodeStateMachine_c35mf")
 anim_player = NodePath("../Armature/AnimationPlayer")
@@ -510,15 +548,19 @@ script = ExtResource("2_2xmo7")
 min_pitch = -70.0
 priority = 1
 follow_mode = 6
-follow_target = NodePath("../../Player")
+follow_target = NodePath("../../CharacterBody3D")
 tween_resource = SubResource("Resource_ic8jn")
 camera_3d_resource = SubResource("Resource_0nj4q")
 follow_offset = Vector3(0, 2, 0)
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[connection signal="state_entered" from="Player/States/Root/Grounded" to="Player" method="_on_grounded_state_entered"]
-[connection signal="state_physics_processing" from="Player/States/Root/Grounded" to="Player" method="_on_grounded_state_physics_processing"]
-[connection signal="state_unhandled_input" from="Player/States/Root/Grounded" to="Player" method="_on_grounded_state_unhandled_input"]
-[connection signal="state_entered" from="Player/States/Root/Airborne" to="Player" method="_on_airborne_state_entered"]
+[connection signal="state_entered" from="CharacterBody3D/States/Root/Character/Grounded" to="CharacterBody3D" method="_on_grounded_state_entered"]
+[connection signal="state_physics_processing" from="CharacterBody3D/States/Root/Character/Grounded" to="CharacterBody3D" method="_on_grounded_state_physics_processing"]
+[connection signal="state_unhandled_input" from="CharacterBody3D/States/Root/Character/Grounded" to="CharacterBody3D" method="_on_grounded_state_unhandled_input"]
+[connection signal="state_entered" from="CharacterBody3D/States/Root/Character/Airborne" to="CharacterBody3D" method="_on_airborne_state_entered"]
+[connection signal="state_entered" from="CharacterBody3D/States/Root/Camera/FreeLook" to="CharacterBody3D" method="_on_free_look_state_entered"]
+[connection signal="state_entered" from="CharacterBody3D/States/Root/Camera/Aiming" to="CharacterBody3D" method="_on_aiming_state_entered"]
+[connection signal="state_physics_processing" from="CharacterBody3D/States/Root/Camera/Aiming" to="CharacterBody3D" method="_on_aiming_state_physics_processing"]
+[connection signal="state_processing" from="CharacterBody3D/States/Root/Camera/Aiming" to="CharacterBody3D" method="_on_aiming_state_processing"]
 
-[editable path="Player/Armature"]
+[editable path="CharacterBody3D/Armature"]

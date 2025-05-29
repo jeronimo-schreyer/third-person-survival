@@ -40,6 +40,7 @@ func _physics_process(delta: float) -> void:
 	# update state chart
 	$States.set_expression_property("velocity", velocity)
 	$States.set_expression_property("is_on_floor", is_on_floor())
+	$States.set_expression_property("aiming", aiming)
 
 
 func _debug_draw():
@@ -51,9 +52,6 @@ func _debug_draw():
 		$Armature.global_transform.origin + Vector3.UP,
 		get_real_velocity() * 2.0, .2, Color.YELLOW, 0.1
 	)
-
-	if aiming:
-		DebugDraw3D.draw_sphere(target_aim_position)
 
 
 func _on_airborne_state_entered() -> void:
@@ -101,33 +99,21 @@ func _on_grounded_state_physics_processing(delta: float) -> void:
 	$AnimationTree.set("parameters/ground/movement/crouch/walk/blend_position", velocity_normalized)
 	$AnimationTree.set("parameters/ground/movement/crouch/strafe/blend_position", computed_direction)
 
-
 	# update other properties
 	$Armature/Skeleton3D/SpineLookAt.active = aiming
 	$Armature/Skeleton3D/HeadLookAt.active = aiming
-	if aiming:
-		var space_state = get_world_3d().direct_space_state
-		var camera = get_viewport().get_camera_3d()
-		var mouse_position = get_viewport().get_mouse_position()
-		var from = camera.project_ray_origin(mouse_position)
-		target_aim_position = from + camera.project_ray_normal(mouse_position) * 5.0
-		var query = PhysicsRayQueryParameters3D.create(from, target_aim_position, 0xffffff, [self])
-		var result = space_state.intersect_ray(query)
-		if not result.is_empty():
-			target_aim_position = result.position
-		$LookAtTarget.global_transform.origin = target_aim_position
 
 
 func _on_grounded_state_unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		match event.physical_keycode:
-			KEY_SHIFT:
+			KEY_SHIFT: # run
 				if event.is_pressed():
 					speed = _run_speed
 				else:
 					speed = _walk_speed
 
-			KEY_CTRL:
+			KEY_CTRL: # toggle crouch
 				if event.is_pressed() and not event.is_echo():
 					crouched = !crouched
 					$AnimationTree.set("parameters/ground/movement/conditions/is_standing", !crouched)
@@ -135,20 +121,49 @@ func _on_grounded_state_unhandled_input(event: InputEvent) -> void:
 
 	if event is InputEventMouseButton:
 		match event.button_index:
-			MOUSE_BUTTON_RIGHT:
+			MOUSE_BUTTON_RIGHT: # aim
 				aiming = event.is_pressed()
-				$LookAtTarget/CollisionShape3D.disabled = !aiming
-
-				# Tween between states
-				var aiming_properties = [
-					"parameters/ground/movement/stand/aiming/blend_amount",
-					"parameters/ground/movement/crouch/aiming/blend_amount",
-				]
-
-				for aiming_property in aiming_properties:
-					var t = get_tree().create_tween()
-					t.tween_property($AnimationTree, aiming_property, 1.0 if aiming else 0.0, 0.06).from_current()
 
 
 func _on_grounded_state_exited() -> void:
 	aiming = false
+
+
+func _on_aiming_state_physics_processing(_delta: float) -> void:
+	# raycast 5m in front of the camera and place the LookAt target in the resulting collision point
+	var space_state = get_world_3d().direct_space_state
+	var camera = get_viewport().get_camera_3d()
+	var mouse_position = get_viewport().get_mouse_position()
+	var from = camera.project_ray_origin(mouse_position)
+	target_aim_position = from + camera.project_ray_normal(mouse_position) * 5.0
+	var query = PhysicsRayQueryParameters3D.create(from, target_aim_position, 0xffffff, [self])
+	var result = space_state.intersect_ray(query)
+	if not result.is_empty():
+		target_aim_position = result.position
+	$LookAtTarget.global_transform.origin = target_aim_position
+
+
+func _on_aiming_state_processing(_delta: float) -> void:
+	DebugDraw3D.draw_sphere(target_aim_position)
+
+
+func _on_aiming_state_entered() -> void:
+	toggle_aim(true)
+
+
+func _on_free_look_state_entered() -> void:
+	toggle_aim(false)
+
+
+func toggle_aim(_aiming: bool):
+	$LookAtTarget/CollisionShape3D.disabled = !_aiming
+
+	# Tween between states
+	var aiming_properties = [
+		"parameters/ground/movement/stand/aiming/blend_amount",
+		"parameters/ground/movement/crouch/aiming/blend_amount",
+	]
+
+	for aiming_property in aiming_properties:
+		var t = get_tree().create_tween()
+		t.tween_property($AnimationTree, aiming_property, 1.0 if _aiming else 0.0, 0.06).from_current()
