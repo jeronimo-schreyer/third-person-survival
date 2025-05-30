@@ -1,7 +1,6 @@
 extends CharacterBody3D
 class_name PlayerBody
 
-
 @export var _rotation_speed := 12.0
 @export var _acceleration: float
 @export var _walk_speed: float
@@ -13,7 +12,7 @@ var mesh_direction := Vector3.FORWARD
 var speed: float
 var crouched := false
 var aiming := false
-var target_aim_position := Vector3.ZERO
+#var target_aim_position := Vector3.ZERO
 
 
 # Add support for is_xr_class on XRTools classes
@@ -130,21 +129,23 @@ func _on_grounded_state_exited() -> void:
 
 
 func _on_aiming_state_physics_processing(_delta: float) -> void:
+	pass
 	# raycast 5m in front of the camera and place the LookAt target in the resulting collision point
-	var space_state = get_world_3d().direct_space_state
-	var camera = get_viewport().get_camera_3d()
-	var mouse_position = get_viewport().get_mouse_position()
-	var from = camera.project_ray_origin(mouse_position)
-	target_aim_position = from + camera.project_ray_normal(mouse_position) * 5.0
-	var query = PhysicsRayQueryParameters3D.create(from, target_aim_position, 0xffffff, [self])
-	var result = space_state.intersect_ray(query)
-	if not result.is_empty():
-		target_aim_position = result.position
-	$LookAtTarget.global_transform.origin = target_aim_position
+	#var space_state = get_world_3d().direct_space_state
+	#var camera = get_viewport().get_camera_3d()
+	#var mouse_position = get_viewport().get_mouse_position()
+	#var from = camera.project_ray_origin(mouse_position)
+	#target_aim_position = from + camera.project_ray_normal(mouse_position) * 5.0
+	#var query = PhysicsRayQueryParameters3D.create(from, target_aim_position, 0xffffff, [self])
+	#var result = space_state.intersect_ray(query)
+	#if not result.is_empty():
+		#target_aim_position = result.position
+	#$LookAtPivot/LookAtTarget.global_transform.origin = target_aim_position
 
 
 func _on_aiming_state_processing(_delta: float) -> void:
-	DebugDraw3D.draw_sphere(target_aim_position)
+	pass
+	#DebugDraw3D.draw_sphere($LookAtPivot/LookAtTarget.global_position)
 
 
 func _on_aiming_state_entered() -> void:
@@ -156,7 +157,7 @@ func _on_free_look_state_entered() -> void:
 
 
 func toggle_aim(_aiming: bool):
-	$LookAtTarget/CollisionShape3D.disabled = !_aiming
+	#$LookAtPivot/LookAtTarget/CollisionShape3D.disabled = !_aiming
 
 	# Tween between states
 	var aiming_properties = [

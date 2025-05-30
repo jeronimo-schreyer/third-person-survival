@@ -1,7 +1,6 @@
-[gd_scene load_steps=88 format=3 uid="uid://iaukrh1tq6b4"]
+[gd_scene load_steps=90 format=3 uid="uid://iaukrh1tq6b4"]
 
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_2xmo7"]
-[ext_resource type="Script" uid="uid://ctvx8g27xt3kb" path="res://player/camera.gd" id="2_2xmo7"]
 [ext_resource type="Script" uid="uid://dbu5ktuokjttm" path="res://player/player.gd" id="2_8u37r"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_i7u44"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_vi4lp"]
@@ -33,6 +32,8 @@
 [ext_resource type="Animation" uid="uid://q3qr4j3t8e51" path="res://player/animations/run/A_Run_F_Masc.anim" id="27_l7dcw"]
 [ext_resource type="Animation" uid="uid://bvav1ujiulfhk" path="res://player/animations/idle/A_Idle_Standing_Masc.anim" id="28_uq8pf"]
 [ext_resource type="Animation" uid="uid://cvo47qpctd86l" path="res://player/animations/walk/A_Walk_F_Masc.anim" id="29_i0lyu"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="32_5ejfk"]
+[ext_resource type="Script" uid="uid://bc5os262y4ywb" path="res://player/camera.gd" id="34_jd2rm"]
 
 [sub_resource type="Resource" id="Resource_2ieo8"]
 script = ExtResource("6_etybo")
@@ -67,8 +68,6 @@ metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g1dw6"]
 radius = 0.24
 height = 1.8
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_rptt4"]
 
 [sub_resource type="Animation" id="Animation_yllr7"]
 length = 0.001
@@ -349,37 +348,54 @@ states/ground/position = Vector2(476.25, 99.875)
 transitions = ["Start", "ground", SubResource("AnimationNodeStateMachineTransition_7pqkx"), "ground", "fall", SubResource("AnimationNodeStateMachineTransition_uw77l"), "fall", "ground", SubResource("AnimationNodeStateMachineTransition_rptt4")]
 graph_offset = Vector2(-97, -53)
 
-[sub_resource type="Resource" id="Resource_ic8jn"]
-script = ExtResource("3_vi4lp")
-duration = 0.24
-transition = 0
-ease = 2
-
-[sub_resource type="Resource" id="Resource_0nj4q"]
+[sub_resource type="Resource" id="Resource_pnw6m"]
 script = ExtResource("4_k34wu")
 keep_aspect = 1
 cull_mask = 1048575
 h_offset = 0.0
 v_offset = 0.0
 projection = 0
-fov = 75.0
+fov = 60.0
 size = 1.0
 frustum_offset = Vector2(0, 0)
 near = 0.05
-far = 4000.0
+far = 1000.0
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_q28gw"]
+
+[sub_resource type="Resource" id="Resource_ge24q"]
+script = ExtResource("3_vi4lp")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="Resource" id="Resource_1so5t"]
+script = ExtResource("4_k34wu")
+keep_aspect = 1
+cull_mask = 1048575
+h_offset = 0.0
+v_offset = 0.0
+projection = 0
+fov = 90.0
+size = 1.0
+frustum_offset = Vector2(0, 0)
+near = 0.05
+far = 1000.0
 metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
 [node name="Player" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1)
+transform = Transform3D(1, 0, 0, 0, 0.890835, -0.454326, 0, 0.454326, 0.890835, 0, 2, 0)
+fov = 90.0
+far = 1000.0
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("1_2xmo7")
-metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 floor_constant_speed = true
@@ -466,14 +482,6 @@ delay_in_seconds = "0.0"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_g1dw6")
 
-[node name="LookAtTarget" type="Area3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -3)
-collision_layer = 16
-collision_mask = 16
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/LookAtTarget"]
-shape = SubResource("SphereShape3D_rptt4")
-
 [node name="Armature" parent="CharacterBody3D" instance=ExtResource("8_1exun")]
 
 [node name="Skeleton3D" parent="CharacterBody3D/Armature" index="0"]
@@ -481,7 +489,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 bones/1/position = Vector3(0, 0.876276, 0)
 
 [node name="SpineLookAt" type="LookAtModifier3D" parent="CharacterBody3D/Armature/Skeleton3D" index="1"]
-target_node = NodePath("../../../LookAtTarget")
 bone_name = "Spine_01"
 bone = 2
 origin_from = 1
@@ -502,7 +509,6 @@ secondary_negative_limit_angle = 0.0
 secondary_negative_damp_threshold = 1.0
 
 [node name="HeadLookAt" type="LookAtModifier3D" parent="CharacterBody3D/Armature/Skeleton3D" index="2"]
-target_node = NodePath("../../../LookAtTarget")
 bone_name = "Head"
 bone = 6
 duration = 0.12
@@ -540,18 +546,63 @@ parameters/ground/movement/stand/aiming/blend_amount = 0.0
 parameters/ground/movement/stand/strafe/blend_position = null
 parameters/ground/movement/stand/walk/blend_position = 0.0
 
+[node name="LookAtPivot" type="Node3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.02, 0)
+
+[node name="LookAtTarget" type="Marker3D" parent="CharacterBody3D/LookAtPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
 [node name="Cameras" type="Node3D" parent="."]
 
-[node name="FollowPlayer" type="Node3D" parent="Cameras" node_paths=PackedStringArray("follow_target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1)
-script = ExtResource("2_2xmo7")
-min_pitch = -70.0
-priority = 1
-follow_mode = 6
+[node name="OverTheShoulder" type="Node3D" parent="Cameras"]
+transform = Transform3D(0.819148, 0, 0.573573, 0, 1, 0, -0.573573, 0, 0.819148, 0, 0, 0)
+script = ExtResource("34_jd2rm")
+min_pitch = -40.0
+max_pitch = 30.0
 follow_target = NodePath("../../CharacterBody3D")
-tween_resource = SubResource("Resource_ic8jn")
-camera_3d_resource = SubResource("Resource_0nj4q")
-follow_offset = Vector3(0, 2, 0)
+look_at_pivot = NodePath("../../CharacterBody3D/LookAtPivot")
+spring_arm_length = 0.6
+spring_arm_height = 1.6
+side_offset = 35.0
+camera_resource = SubResource("Resource_pnw6m")
+priority = 1
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Cameras/OverTheShoulder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+shape = SubResource("SeparationRayShape3D_q28gw")
+spring_length = 0.6
+
+[node name="PhantomCamera3D" type="Node3D" parent="Cameras/OverTheShoulder/SpringArm3D" node_paths=PackedStringArray("look_at_target")]
+transform = Transform3D(0.999982, 0, 0, 0, 0.815363, -0.578895, 0, 0.578908, 0.815345, 0, 0, 0)
+script = ExtResource("32_5ejfk")
+priority = 1
+look_at_mode = 2
+look_at_target = NodePath("../../../../CharacterBody3D/LookAtPivot/LookAtTarget")
+tween_resource = SubResource("Resource_ge24q")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="WideShot" type="Node3D" parent="Cameras"]
+transform = Transform3D(0.999995, 0, 0, 0, 1, 0, 0, 0, 0.999995, 0, 0, 0)
+script = ExtResource("34_jd2rm")
+min_pitch = -50.0
+max_pitch = 25.0
+follow_target = NodePath("../../CharacterBody3D")
+look_at_pivot = NodePath("../../CharacterBody3D/LookAtPivot")
+target_depth = 5.0
+camera_resource = SubResource("Resource_1so5t")
+priority = 2
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Cameras/WideShot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("SeparationRayShape3D_q28gw")
+
+[node name="PhantomCamera3D" type="Node3D" parent="Cameras/WideShot/SpringArm3D" node_paths=PackedStringArray("look_at_target")]
+transform = Transform3D(0.996356, 0, 0, 0, 0.887579, -0.454307, 0, 0.452665, 0.890799, 0, 0, 0)
+script = ExtResource("32_5ejfk")
+priority = 2
+look_at_mode = 2
+look_at_target = NodePath("../../../../CharacterBody3D/LookAtPivot/LookAtTarget")
+tween_resource = SubResource("Resource_ge24q")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [connection signal="state_entered" from="CharacterBody3D/States/Root/Character/Grounded" to="CharacterBody3D" method="_on_grounded_state_entered"]
@@ -562,5 +613,9 @@ metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 [connection signal="state_entered" from="CharacterBody3D/States/Root/Camera/Aiming" to="CharacterBody3D" method="_on_aiming_state_entered"]
 [connection signal="state_physics_processing" from="CharacterBody3D/States/Root/Camera/Aiming" to="CharacterBody3D" method="_on_aiming_state_physics_processing"]
 [connection signal="state_processing" from="CharacterBody3D/States/Root/Camera/Aiming" to="CharacterBody3D" method="_on_aiming_state_processing"]
+[connection signal="became_active" from="Cameras/OverTheShoulder/SpringArm3D/PhantomCamera3D" to="Cameras/OverTheShoulder" method="_on_became_active"]
+[connection signal="became_inactive" from="Cameras/OverTheShoulder/SpringArm3D/PhantomCamera3D" to="Cameras/OverTheShoulder" method="_on_became_inactive"]
+[connection signal="became_active" from="Cameras/WideShot/SpringArm3D/PhantomCamera3D" to="Cameras/WideShot" method="_on_became_active"]
+[connection signal="became_inactive" from="Cameras/WideShot/SpringArm3D/PhantomCamera3D" to="Cameras/WideShot" method="_on_became_inactive"]
 
 [editable path="CharacterBody3D/Armature"]

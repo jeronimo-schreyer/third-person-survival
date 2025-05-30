@@ -73,4 +73,6 @@ tips/show_jitter_tips=false
 
 [physics]
 
+common/physics_ticks_per_second=120
 3d/default_gravity=30.0
+common/physics_interpolation=true
